@@ -97,11 +97,12 @@ void MainWindow::on_actionSave_triggered()
 
     QFile file(lastSavedFile);
 
-    if (file.open(QIODevice::ReadWrite)) {
+    if (file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
         QJsonObject *jsonObject = getAsJson();
         QJsonDocument document(*jsonObject);
 
         file.write(document.toJson());
+        file.flush();
         file.close();
 
         delete jsonObject;
