@@ -1,0 +1,8 @@
+.*.stash
+*.pro.user
+
+Makefile
+
+build
+bin
+.flatpak*
