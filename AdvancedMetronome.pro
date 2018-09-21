@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2018-09-16T14:18:52
-#
-#-------------------------------------------------
-
 QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -11,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
-TARGET = MetronomeGenerator
+TARGET = AdvancedMetronome
 TEMPLATE = app
 
 DESTDIR = bin
@@ -24,15 +18,11 @@ SOURCES += \
         src/main.cpp \
         src/mainwindow.cpp \
         src/metronome.cpp \
-        src/audiorecorder.cpp \
-        src/merge.cpp \
         src/measure.cpp
 
 HEADERS += \
         src/mainwindow.h \
         src/metronome.h \
-        src/audiorecorder.h \
-        src/merge.h \
         src/measure.h
 
 FORMS += \
@@ -41,5 +31,3 @@ FORMS += \
 
 RESOURCES += \
         resources.qrc
-
-# Dependency: qt5-gstreamer-devel

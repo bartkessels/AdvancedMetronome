@@ -1,11 +1,12 @@
 <RCC>
-    <qresource prefix="/">
-        <file alias="accent">resources/accent.wav</file>
-        <file alias="tick">resources/tick.wav</file>
-    </qresource>
+    <qresource prefix="/"/>
     <qresource prefix="/icons">
         <file alias="delete">resources/icons/delete.svg</file>
         <file alias="move_up">resources/icons/move_up.svg</file>
         <file alias="move_down">resources/icons/move_down.svg</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file alias="accent">resources/sounds/accent.wav</file>
+        <file alias="tick">resources/sounds/tick.wav</file>
     </qresource>
 </RCC>

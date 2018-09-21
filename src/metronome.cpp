@@ -1,74 +1,89 @@
 #include "metronome.h"
 
-#include <QAudioDeviceInfo>
-
 static const int MINUTE_IN_MS = 60 * 1000;
 
 Metronome::Metronome(QObject *parent)
     : QObject(parent)
 {
-    m_timer.setTimerType(Qt::PreciseTimer);
-    connect(&m_timer, &QTimer::timeout, this, &Metronome::performBeat);
+    timer.setTimerType(Qt::PreciseTimer);
+    connect(&timer, &QTimer::timeout, this, &Metronome::tick);
 
-    m_accent.setSource(QUrl("qrc:/accent"));
-    m_tick.setSource(QUrl("qrc:/tick"));
-
-    setBpm(218);
-    setBeats(4);
+    metronomeAccent.setSource(QUrl("qrc:/sounds/accent"));
+    metronomeTick.setSource(QUrl("qrc:/sounds/tick"));
 }
 
-void Metronome::setBpm(const int bpm) {
-    m_bpm = qBound(10, bpm, 999);
-    emit changed();
+/**
+ * @brief Metronome::setMeasure
+ * @param measure the new measure to be played
+ *
+ * Set a new measure that needs to be played
+ *
+ */
+void Metronome::setMeasure(Measure *measure)
+{
+    this->measure = measure;
 }
 
-void Metronome::setBeats(const int beats) {
-    m_beats = qBound(1, beats, 9);
-    emit changed();
-}
+/**
+ * @brief Metronome::tick
+ *
+ * Play a tick or accent sound based on the current beat index;
+ * if the current beat index is the first beat of the measure
+ * an accent is being played to notify the user that a new measure
+ * has begon, given any other value a regular 'tick' is being played
+ *
+ * This method also keeps track of the allowed times this measure
+ * needs to be played; if the total play times exceeds the allowed
+ * play times notify the MainWindow that the measure is done
+ *
+ */
+void Metronome::tick()
+{
+    if (measure == NULL) {
+        return;
+    }
 
-void Metronome::start() {
-    m_currentBeat = 0;
-    m_timer.start(0);
-    emit changed();
-}
+    (currentBeat == DEFAULT_CURRENT_BEAT ? &metronomeAccent : &metronomeTick)->play();
+    if (currentBeat++ >= measure->getTimeSignature()) {
+        currentBeat = DEFAULT_CURRENT_BEAT;
+        currentMeasureCount++;
+    }
 
-void Metronome::stop() {
-    m_timer.stop();
-    emit changed();
-}
+    const int interval = MINUTE_IN_MS / measure->getBeatsPerMinute();
+    if (timer.interval() != interval) {
+        timer.setInterval(interval);
+    }
 
-void Metronome::toggle() {
-    if (isActive()) {
-        stop();
-    } else {
-        start();
+    if (currentMeasureCount >= measure->getNumberOfRepeats()) {
+        currentMeasureCount = DEFAULT_CURRENT_MEASURE_COUNT;
+        emit measureEnded();
     }
 }
 
-void Metronome::performBeat() {
-    if (m_currentBeat++ >= m_beats) {
-        m_currentBeat = 1;
-    }
-
-    (m_currentBeat == 1 ? &m_accent : &m_tick)->play();
-
-    const int interval = MINUTE_IN_MS / m_bpm;
-    if (m_timer.interval() != interval) {
-        m_timer.setInterval(interval);
-    }
-
-    emit changed();
+/**
+ * @brief Metronome::start
+ *
+ * Start the timer; the actual metronome
+ * handling is done on each timer::timeout
+ *
+ */
+void Metronome::start()
+{
+    timer.start();
 }
 
-bool Metronome::tap() {
-    if (m_tap.isValid()) {
-        setBpm(MINUTE_IN_MS / m_tap.elapsed());
-        m_tap.invalidate();
+/**
+ * @brief Metronome::stop
+ *
+ * Stop the timer and set all the
+ * variables to their default values
+ *
+ */
+void Metronome::stop()
+{
+    timer.stop();
+    measure = nullptr;
 
-        return true;
-    }
-
-    m_tap.start();
-    return false;
+    currentBeat = DEFAULT_CURRENT_BEAT;
+    currentMeasureCount = DEFAULT_CURRENT_MEASURE_COUNT;
 }

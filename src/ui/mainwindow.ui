@@ -11,125 +11,147 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Advanced Metronome</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="vLayout_information">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <layout class="QVBoxLayout" name="vLayout_songTitle">
+       <layout class="QVBoxLayout" name="vLayout_information">
         <item>
-         <widget class="QLabel" name="lbl_songTitle">
-          <property name="text">
-           <string>Song Title</string>
+         <layout class="QVBoxLayout" name="vLayout_songTitle">
+          <item>
+           <widget class="QLabel" name="lbl_songTitle">
+            <property name="text">
+             <string>Song Title</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_songTitle"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="le_songTitle"/>
+         <layout class="QVBoxLayout" name="vLayout_preMetronome">
+          <item>
+           <widget class="QCheckBox" name="cb_usePreMetronomeTicks">
+            <property name="text">
+             <string>Use pre-metronome ticks</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spn_preMetronomeBeatsPerMinute">
+            <property name="suffix">
+             <string> BPM</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>999999999</number>
+            </property>
+            <property name="value">
+             <number>120</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spn_preMetronomeNumberOfTicks">
+            <property name="suffix">
+             <string> No. Ticks</string>
+            </property>
+            <property name="value">
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
       <item>
-       <widget class="Line" name="line">
+       <widget class="Line" name="sep_informationFromMeasures">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="vLayoutPreMetronome">
-        <item>
-         <widget class="QCheckBox" name="cb_usePreMetronomeTicks">
-          <property name="text">
-           <string>Use pre-metronome ticks</string>
+       <widget class="QScrollArea" name="scrollArea_measures">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="saWidget_measures">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>388</width>
+           <height>496</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spn_preMetronomeBeatsPerMinute">
-          <property name="suffix">
-           <string> BPM</string>
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-          <property name="minimum">
-           <number>1</number>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-          <property name="maximum">
-           <number>999999999</number>
+          <property name="rightMargin">
+           <number>0</number>
           </property>
-          <property name="value">
-           <number>120</number>
+          <property name="bottomMargin">
+           <number>0</number>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spn_preMetronomeNumberOfTicks">
-          <property name="suffix">
-           <string> No. Ticks</string>
-          </property>
-          <property name="value">
-           <number>4</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
+          <item>
+           <layout class="QVBoxLayout" name="vLayout_measures">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="Line" name="sep_informationFromMeasures">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QScrollArea" name="scrollArea_measures">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="saWidget_measures">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>389</width>
-         <height>523</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="spacing">
-         <number>0</number>
+     <layout class="QHBoxLayout" name="hLayout_currentFile">
+      <item>
+       <widget class="QLabel" name="lbl_currentFIleLabel">
+        <property name="text">
+         <string>Current File:</string>
         </property>
-        <property name="leftMargin">
-         <number>0</number>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lbl_currentFile">
+        <property name="text">
+         <string>(none)</string>
         </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <layout class="QVBoxLayout" name="vLayout_measures">
-          <property name="spacing">
-           <number>5</number>
-          </property>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -146,6 +168,8 @@
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="separator"/>
@@ -156,12 +180,6 @@
      <string>&amp;Measure</string>
     </property>
     <addaction name="actionAdd_Measure"/>
-   </widget>
-   <widget class="QMenu" name="menuExport">
-    <property name="title">
-     <string>E&amp;xport</string>
-    </property>
-    <addaction name="actionExport_to_Audio_FIle"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -182,7 +200,6 @@
    <addaction name="menuFile"/>
    <addaction name="menuMetronome"/>
    <addaction name="menuMeasure"/>
-   <addaction name="menuExport"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionSave">
@@ -227,7 +244,7 @@
   </action>
   <action name="actionAbout_Metronome_Generator">
    <property name="text">
-    <string>&amp;About Metronome Generator</string>
+    <string>&amp;About Advanced Metronome</string>
    </property>
   </action>
   <action name="actionAbout_Qt">
@@ -244,10 +261,24 @@
    <property name="text">
     <string>&amp;Play</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
   </action>
   <action name="actionStop">
    <property name="text">
     <string>&amp;Stop</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>573</width>
-    <height>136</height>
+    <height>235</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -24,7 +24,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="vLayout_data">
+      <layout class="QVBoxLayout" name="vLayout_information">
        <item>
         <widget class="QLineEdit" name="le_title">
          <property name="placeholderText">
@@ -88,6 +88,218 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="lbl_timeSignature">
+         <property name="text">
+          <string>Time Signature:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cbox_timeSignatureNumerator">
+         <item>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">10</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">11</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">12</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">13</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">14</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">15</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">17</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">18</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">19</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">20</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">21</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">22</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">23</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">24</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">25</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">26</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">27</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">28</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">29</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">30</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">31</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">32</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cbox_timeSignatureDenominator">
+         <item>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">32</string>
+          </property>
+         </item>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -128,6 +340,13 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

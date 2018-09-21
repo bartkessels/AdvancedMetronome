@@ -1,49 +1,43 @@
 #pragma once
 
 #include <QObject>
-
-#include <QElapsedTimer>
 #include <QSoundEffect>
 #include <QTimer>
+
+#include <QDebug>
+
+#include "measure.h"
 
 class Metronome : public QObject
 {
     Q_OBJECT
+
+#define DEFAULT_CURRENT_MEASURE_COUNT 0
+#define DEFAULT_CURRENT_BEAT 1
+
 public:
     explicit Metronome(QObject *parent = nullptr);
 
-    int bpm() const { return m_bpm; }
-    void setBpm(const int bpm);
-
-    int beats() const { return m_beats; }
-    void setBeats(const int beats);
-
-    int currentBeat() const { return m_currentBeat; }
-    bool isActive() const { return m_timer.isActive(); }
-
-    bool tap();
+    void setMeasure(Measure *measure);
+    void start();
+    void stop();
 
 private:
-    QTimer m_timer;
-    QElapsedTimer m_tap;
+    Measure *measure;
 
-    int m_bpm;
-    int m_currentBeat;
-    int m_beats;
+    int currentMeasureCount = DEFAULT_CURRENT_MEASURE_COUNT;
+    int currentBeat = DEFAULT_CURRENT_BEAT;
 
-    QSoundEffect m_accent;
-    QSoundEffect m_tick;
+    QTimer timer;
+
+    QSoundEffect metronomeAccent;
+    QSoundEffect metronomeTick;
 
 
 signals:
-    void changed();
-
-public slots:
-    void start();
-    void stop();
-    void toggle();
+    void measureEnded();
 
 private slots:
-    void performBeat();
+    void tick();
 };
 
