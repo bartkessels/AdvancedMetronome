@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg16"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="Store icon.svg"
+   inkscape:export-filename="/home/bkessels/Pictures/Apps/Advanced Metronome/Play Store Icon.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="105.34884"
+     inkscape:cy="244.23009"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer4"
+     showgrid="false"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       position="50.081843,83.910716"
+       orientation="1,0"
+       id="guide1424"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="85.044639,75.784228"
+       orientation="1,0"
+       id="guide1426"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="67.846723,52.916668"
+       orientation="1,0"
+       id="guide6371"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="25.938616,42.616815"
+       orientation="1,0"
+       id="guide6388"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="113.36923,32.435082"
+       orientation="1,0"
+       id="guide6390"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="85.044636,70.024618"
+       orientation="0,1"
+       id="guide6418"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="90.337096,49.979403"
+       orientation="0,1"
+       id="guide6420"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="88.466209,60.00201"
+       orientation="0,1"
+       id="guide6422"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="90.470731,80.047226"
+       orientation="0,1"
+       id="guide6424"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-59.307105,99.905352"
+       orientation="0,1"
+       id="guide6499"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-21.889373,83.815724"
+       orientation="0,1"
+       id="guide839"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-90.550909,94.1056"
+       orientation="0,1"
+       id="guide841"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="Background"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#90a9b7;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6495"
+       width="108.479"
+       height="108.479"
+       x="13.493835"
+       y="13.493835"
+       ry="16.933001" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Metronome"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       style="fill:#efd09e;fill-opacity:1;stroke:#000000;stroke-width:0.33611166;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 43.902303,107.88406 c -5.624602,-0.0506 -6.357526,-0.0863 -6.357526,-0.30964 0,-0.34644 2.909891,-15.077169 10.329557,-52.291297 3.976419,-19.94415 5.456676,-27.299935 5.540187,-27.530632 0.05798,-0.160156 3.104637,-0.20273 14.507435,-0.20273 h 14.434049 l 7.799971,40.048382 c 4.28999,22.026609 7.75494,40.094627 7.69989,40.151157 -0.11163,0.11462 -44.004978,0.22426 -53.953563,0.13476 z"
+       id="path1449"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Metronome count"
+     style="display:inline">
+    <rect
+       style="fill:#272727;fill-opacity:1;stroke:none;stroke-width:0.14931259;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6394"
+       width="1.22857"
+       height="47.167"
+       x="67.495552"
+       y="45.452656" />
+    <rect
+       style="fill:#272727;fill-opacity:1;stroke:none;stroke-width:0.07929252;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6394-6"
+       width="0.97766984"
+       height="16.715439"
+       x="-78.402107"
+       y="59.806458"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#272727;fill-opacity:1;stroke:none;stroke-width:0.06866934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6394-6-7"
+       width="0.97766984"
+       height="12.536579"
+       x="-69.801018"
+       y="61.904243"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#272727;fill-opacity:1;stroke:none;stroke-width:0.05606829;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6394-6-7-5"
+       width="0.97766984"
+       height="8.3577194"
+       x="-61.199955"
+       y="63.985313"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#272727;fill-opacity:1;stroke:none;stroke-width:0.03964626;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6394-6-7-5-3"
+       width="0.97766984"
+       height="4.1788597"
+       x="-52.598881"
+       y="66.074745"
+       transform="rotate(-90)" />
+  </g>
+  <g
+     inkscape:label="Metronome Arm"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-161.53332)"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#d2d8b3;fill-opacity:1;stroke:#000000;stroke-width:0.26527393;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5959"
+       width="2.2540772"
+       height="50.052731"
+       x="-1.1476622"
+       y="219.42564"
+       transform="matrix(0.893856,-0.44835416,0.25494895,0.96695451,0,0)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Metronome Arm Indicator"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <ellipse
+       style="fill:#d2d8b3;fill-opacity:1;stroke:#000000;stroke-width:0.22407444;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path6489"
+       cx="57.612797"
+       cy="56.919472"
+       rx="2.5073159"
+       ry="2.5745018" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Metronome Arm color"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#d2d8b3;fill-opacity:1;stroke:none;stroke-width:0.26524121;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5959-5"
+       width="2.0860505"
+       height="50.052731"
+       x="41.017803"
+       y="71.923256"
+       transform="matrix(0.893856,-0.44835416,0.25494895,0.96695451,0,0)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Metronome bottom"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       style="fill:#d4aa7d;fill-opacity:1;stroke:#000000;stroke-width:0.22426374;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 44.196712,107.77506 c -5.606137,-0.01 -6.336656,-0.017 -6.336656,-0.061 0,-0.0683 -0.294158,-0.0705 -0.294158,-0.0705 0,0 2.99802,-15.62408 3.081258,-15.669563 0.05778,-0.03158 16.124997,-0.03991 27.490367,-0.03991 l 26.666403,-0.16088 1.63449,8.862453 c 1.11666,6.05461 1.58962,7.1018 1.53477,7.11296 -0.11129,0.0226 -43.860544,0.0443 -53.776474,0.0266 z"
+       id="path1449-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccscsccc" />
+  </g>
+</svg>

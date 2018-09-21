@@ -396,12 +396,26 @@ void MainWindow::on_actionOpen_triggered()
 // =============================================================================
 // Metronome action menu
 
+/**
+ * @brief MainWindow::on_actionPlay_triggered
+ *
+ * Delegate the starting of the metronome to another
+ * method while passing in wheter or not the pre-metronome
+ * should be used
+ *
+ */
 void MainWindow::on_actionPlay_triggered()
 {
     bool usePreMetronome = ui->cb_usePreMetronomeTicks->isChecked();
     startMetronome(usePreMetronome);
 }
 
+/**
+ * @brief MainWindow::on_actionStop_triggered
+ *
+ * Stop the metronome
+ *
+ */
 void MainWindow::on_actionStop_triggered()
 {
     metronome->stop();
@@ -410,7 +424,54 @@ void MainWindow::on_actionStop_triggered()
 // =============================================================================
 // Measure action menu
 
+/**
+ * @brief MainWindow::on_actionAdd_Measure_triggered
+ *
+ * Delegate the creation and adding of a new measure object
+ * to another method
+ *
+ */
 void MainWindow::on_actionAdd_Measure_triggered()
 {
     addMeasure(new Measure(this));
+}
+
+// =============================================================================
+// Help action menu
+
+/**
+ * @brief MainWindow::on_actionAbout_Advanced_Metronome_triggered
+ *
+ * Show about dialog for Advanced Metronome
+ *
+ */
+void MainWindow::on_actionAbout_Advanced_Metronome_triggered()
+{
+    QMessageBox::about(this, tr("About Advanced Metronome"), tr("Advanced Metronome is a small application in which "
+                                                                "you can set multiple measures with their own speed, "
+                                                                "time-signature and number of repeats.\n\n"
+                                                                "This gives you the ability to practice songs that "
+                                                                "have multiple speeds and/or time-signatures."));
+}
+
+/**
+ * @brief MainWindow::on_actionAbout_Qt_triggered
+ *
+ * Show about dialog for Qt
+ *
+ */
+void MainWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this);
+}
+
+/**
+ * @brief MainWindow::on_actionView_on_GitHub_triggered
+ *
+ * Open the github page
+ *
+ */
+void MainWindow::on_actionView_on_GitHub_triggered()
+{
+    QDesktopServices::openUrl(QUrl(URI_GITHUB));
 }

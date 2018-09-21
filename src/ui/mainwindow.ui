@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Advanced Metronome</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../resources.qrc">
+    <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -185,7 +189,7 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout_Metronome_Generator"/>
+    <addaction name="actionAbout_Advanced_Metronome"/>
     <addaction name="actionAbout_Qt"/>
     <addaction name="separator"/>
     <addaction name="actionView_on_GitHub"/>
@@ -242,7 +246,7 @@
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionAbout_Metronome_Generator">
+  <action name="actionAbout_Advanced_Metronome">
    <property name="text">
     <string>&amp;About Advanced Metronome</string>
    </property>
@@ -275,7 +279,7 @@
   </action>
   <action name="actionNew">
    <property name="text">
-    <string>New</string>
+    <string>&amp;New</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -283,6 +287,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

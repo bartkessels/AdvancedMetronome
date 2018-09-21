@@ -9,6 +9,7 @@
 #include <QIODevice>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 #include "measure.h"
 #include "metronome.h"
@@ -20,6 +21,9 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+// URI's
+#define URI_GITHUB "https://github.com/bartkessels/AdvancedMetronome"
 
 // Pre metronome
 #define PRE_METRONOME_TIME_SIGNATURE_NUMERATOR_INDEX 0
@@ -78,6 +82,12 @@ private slots:
 
     // Measure action menu
     void on_actionAdd_Measure_triggered();
+
+    void on_actionAbout_Advanced_Metronome_triggered();
+
+    void on_actionAbout_Qt_triggered();
+
+    void on_actionView_on_GitHub_triggered();
 
 private:
     Ui::MainWindow *ui;
