@@ -44,7 +44,7 @@ make install
 %{_datarootdir}/net.bartkessels.advancedmetronome/translations/*
 %{_datarootdir}/appdata/net.bartkessels.advancedmetronome.appdata.xml
 %{_datarootdir}/applications/net.bartkessels.advancedmetronome.desktop
-%{_datarootdir}/icons/hicolor/*/apps/net.bartkessels.advancedmetronome.*
+%{_datarootdir}/icons/hicolor/*/apps/net.bartkessels.advancedmetronome*.*
 
 %changelog
 * Sat Sep 22 2018 Bart Kessels <bartkessels@bk-mail.com> 1.0
