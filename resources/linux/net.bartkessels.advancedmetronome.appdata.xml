@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018 Bart Kessels <bartkessels@bk-mail.com> -->
+<component type="desktop">
+
+	<id>net.bartkessels.advancedmetronome.desktop</id>
+	<metadata_license>CC0</metadata_license>
+	<project_license>GPL-3.0+</project_license>
+	<name>Advanced Metronome</name>
+	<summary>Advanced Metronome is a small application in which you can set multiple measures.</summary>
+	<translation type="gettext">advancedmetronome</translation>
+	
+	<description>
+		<p>
+			Advanced Metronome is created for musicians who want to practice songs which have multiple
+			speeds and/or time-durations. &lsquo;Cause regular metronomes only allow one constant tempo Advanced Metronome
+			steps in to solve this problem.
+		</p>
+
+		<p>
+			Advanced Metronome also gives you the ability to save and share your songs with others so this application will
+			suit many bands in their song-writing process.
+		</p>
+	</description>
+	
+	<launchable type="desktop-id">net.bartkessels.advancedmetronome.desktop</launchable>
+	
+	<screenshots>
+		<screenshot name="default">
+			<caption>Main screen of Advanced Metronome</caption>
+			<image width="838" height="505">https://github.com/bartkessels/advancedmetronome/raw/master/data/screenshots/mainwindow.png</image>
+		</screenshot>
+	</screenshots>
+	
+	<url type="homepage">https://github.com/bartkessels/advancedmetronome</url>
+	<developer_name>Bart Kessels</developer_name>
+	<update_contact>bartkessels_AT_bk-mail.com</update_contact>
+	<content_rating type="oars-1.0" />
+	
+	<languages>
+		<lang percentage="100%">en_US</lang>
+		<lang percentage="100%">nl_NL</lang>
+	</languages>
+	
+	<provides>
+		<binary>advancedmetronome</binary>
+	</provides>
+	
+	<releases>
+		<release version="1.0" date="2018-09-22">
+			<p>Initial Release</p>
+		</release>
+	</releases>
+
+</component>

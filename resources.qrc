@@ -5,7 +5,6 @@
         <file alias="move_up">resources/icons/move_up.svg</file>
         <file alias="move_down">resources/icons/move_down.svg</file>
         <file alias="appicon">resources/icons/appicon.svg</file>
-        <file alias="appicon_inversed">resources/icons/appicon_inversed.svg</file>
     </qresource>
     <qresource prefix="/sounds">
         <file alias="accent">resources/sounds/accent.wav</file>

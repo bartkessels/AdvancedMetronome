@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Advanced Metronome
+Comment=Advanced Metronome is a small application in which you can set multiple measures
+Exec=advancedmetronome
+Terminal=false
+Type=application
+Categories=Qt;Multimedia
+StartupNotify=true
+Icon=net.bartkessels.advancedmetronome
+Name[en_US]=net.bartkessels.advancedmetronome.desktop
