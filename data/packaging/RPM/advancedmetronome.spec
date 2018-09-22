@@ -47,5 +47,5 @@ make install
 %{_datarootdir}/icons/hicolor/*/apps/net.bartkessels.advancedmetronome.*
 
 %changelog
-* Sat Sep 27 2018 Bart Kessels <bartkessels@bk-mail.com> 1.0
+* Sat Sep 22 2018 Bart Kessels <bartkessels@bk-mail.com> 1.0
 - Initial Release
