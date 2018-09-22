@@ -1,0 +1,6 @@
+advancedmetronome*
+results*
+.build*
+
+*.rpm
+*.tar.gz
