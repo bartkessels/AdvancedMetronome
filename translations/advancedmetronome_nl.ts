@@ -37,7 +37,7 @@
         <location filename="../src/ui/mainwindow.ui" line="105"/>
         <location filename="../src/ui/mainwindow.ui" line="183"/>
         <location filename="../src/mainwindow.cpp" line="103"/>
-        <location filename="../src/mainwindow.cpp" line="259"/>
+        <location filename="../src/mainwindow.cpp" line="275"/>
         <source>(none)</source>
         <translation>(geen)</translation>
     </message>
@@ -117,33 +117,38 @@
         <translation>&amp;Nieuw</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="331"/>
+        <location filename="../src/mainwindow.cpp" line="347"/>
         <source>It looks like you have a file opened, are you sure you want to create a new song?</source>
         <translation>Het lijkt er op dat je al een bestand hebt geopend, weet je zeker dat je een nieuw nummer wilt maken?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="377"/>
+        <location filename="../src/mainwindow.cpp" line="393"/>
         <source>Save Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="379"/>
-        <location filename="../src/mainwindow.cpp" line="403"/>
+        <location filename="../src/mainwindow.cpp" line="395"/>
+        <location filename="../src/mainwindow.cpp" line="419"/>
         <source>Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="401"/>
+        <location filename="../src/mainwindow.cpp" line="417"/>
         <source>Open Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer Openen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="419"/>
+        <location filename="../src/mainwindow.cpp" line="194"/>
         <source>The selected file is not a valid Advanced Metronone file</source>
         <translation>Het geselecteerde bestand is geen geldig Advanced Metronome bestand</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
+        <source>The selected file does not exist</source>
+        <translation>Het geselecteerde bestand bestaat niet</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="483"/>
         <source>Advanced Metronome is created for musicians who want to practice songs which have multiple speeds and/or time-durations. &apos;Cause regular metronomes only allow one constant tempo Advanced Metronome steps in to solve this problem.
 
 Advanced Metronome also gives you the ability to save and share your songs with others so this application will suit many bands in their song-writing process.</source>
@@ -152,12 +157,13 @@ Advanced Metronome also gives you the ability to save and share your songs with 
 Advanced Metronome geeft je ook de mogelijkheid om je nummer op te slaan en de delen met anderen zodat deze applicatie zich leent voor veel bands tijdens het schrijven van eigen nummers.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="419"/>
+        <location filename="../src/mainwindow.cpp" line="183"/>
+        <location filename="../src/mainwindow.cpp" line="194"/>
         <source>Opening File</source>
         <translation>Bestand Openen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="483"/>
         <source>About Advanced Metronome</source>
         <translation>Over Advanced Metronome</translation>
     </message>

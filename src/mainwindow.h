@@ -47,12 +47,12 @@ class MainWindow : public QMainWindow
 #define FILE_EXT ".metgs"
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     // JSON
     QJsonDocument getAsJson();
-    void loadFromJson(QJsonDocument jsonObject);
+    void loadFromJson(QString filePath);
 
     // Window
     void addMeasure(Measure *measure);

@@ -176,13 +176,29 @@ QJsonDocument MainWindow::getAsJson()
  * does not set the values for each measure
  *
  */
-void MainWindow::loadFromJson(QJsonDocument jsonDocument)
+void MainWindow::loadFromJson(QString filePath)
 {
-    if (jsonDocument.isNull() || !jsonDocument.isObject()) {
+    QFile file(filePath);
+    if (!file.exists() || !file.open(QIODevice::ReadOnly)) {
+        QMessageBox::warning(this, tr("Opening File"), tr("The selected file does not exist"));
         return;
     }
 
-    QJsonObject jsonObject = jsonDocument.object();
+    QString fileContents = QString(file.readAll());
+    QJsonDocument document = QJsonDocument::fromJson(fileContents.toUtf8());
+    file.flush();
+    file.close();
+
+    // Invalid JSON
+    if (document.isNull() || !document.isObject()) {
+        QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Advanced Metronone file"));
+        return;
+    }
+
+    clearWindow();
+    setCurrentFile(filePath);
+
+    QJsonObject jsonObject = document.object();
     QString songTitle = jsonObject.value(JSON_KEY_SONG_TITLE).toString();
     bool preMetronomeEnabled = jsonObject.value(JSON_KEY_PRE_METRONOME_ENABLED).toBool();
     int preMetronomeBeatsPerMinute = jsonObject.value(JSON_KEY_PRE_METRONOME_BPM).toInt();
@@ -406,24 +422,7 @@ void MainWindow::on_actionOpen_triggered()
     if (result == QMessageBox::Accepted &&
             openFileDialog.selectedFiles().length() > 0) {
         QString selectedFile = openFileDialog.selectedFiles().first();
-        QFile file(selectedFile);
-        if (file.open(QIODevice::ReadOnly)) {
-            QString fileContents = QString(file.readAll());
-            file.flush();
-            file.close();
-
-            QJsonDocument document = QJsonDocument::fromJson(fileContents.toUtf8());
-
-            // Invalid JSON
-            if (document.isNull() || !document.isObject()) {
-                QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Advanced Metronone file"));
-                return;
-            }
-
-            clearWindow();
-            setCurrentFile(selectedFile);
-            loadFromJson(document);
-        }
+        loadFromJson(selectedFile);
     }
 }
 

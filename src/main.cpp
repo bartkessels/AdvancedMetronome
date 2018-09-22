@@ -1,10 +1,14 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <QFile>
 #include <QFileInfo>
 #include <QLocale>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <string>
+
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -43,6 +47,12 @@ int main(int argc, char *argv[])
     // Display the main window
     MainWindow w;
     w.show();
+
+    // Check if a file is being opened
+    if (argc >= 2 && strlen(argv[1]) > 0) {
+        qInfo() << "Komt in args: " << argv[1] << endl;
+        w.loadFromJson(argv[1]);
+    }
 
     return app.exec();
 }

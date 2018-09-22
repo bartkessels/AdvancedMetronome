@@ -1,11 +1,12 @@
 [Desktop Entry]
 Name=Advanced Metronome
 Comment=Advanced Metronome is a small application in which you can set multiple measures
-Exec=advancedmetronome
+Exec=advancedmetronome %f
 Terminal=false
 Type=Application
 Categories=Audio;AudioVideo
 StartupNotify=true
 Icon=net.bartkessels.advancedmetronome
 Keywords=Metronome;Tick;BPM;
+MimeType=application/json;application/x-advancedmetronome
 Name[en_US]=Advanced Metronome
