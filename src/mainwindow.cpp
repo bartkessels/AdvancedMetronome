@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Setup vertical / horizontal layouts
     ui->hLayout_currentFile->setAlignment(Qt::AlignLeft);
+    ui->hLayout_currentPlayingMeasure->setAlignment(Qt::AlignLeft);
     ui->vLayout_information->setAlignment(Qt::AlignTop);
     ui->vLayout_measures->setAlignment(Qt::AlignTop);
 
@@ -61,25 +62,25 @@ void MainWindow::startMetronome(bool preMetronomeTicks)
 
         metronome->setMeasure(preMetronome);
     } else {
-        on_metronomeMeasureCompleted();
+        playNextMeasure();
     }
 
     metronome->start();
 }
 
 // =============================================================================
-// Metronome slots
+// Measure
 
 /**
- * @brief MainWindow::on_metronomeMeasureCompleted
+ * @brief MainWindow::nextMetronomeMeasure
  *
- * If the metronome notifies that a measure is completed
- * check if another measure is waiting to be played, if so
- * update the measure in the metronome object and continue,
- * if there aren't any more measures stop the metronome
+ * If a measure is completed check if another measure is
+ * waiting to be played, if so update the measure in the
+ * metronome object and continue, if there aren't any more
+ * measures stop the metronome
  *
  */
-void MainWindow::on_metronomeMeasureCompleted()
+void MainWindow::playNextMeasure()
 {
     currentPlayingMeasure++;
     if (currentPlayingMeasure < ui->vLayout_measures->count()) {
@@ -93,6 +94,39 @@ void MainWindow::on_metronomeMeasureCompleted()
     } else {
         metronome->stop();
     }
+
+    setCurrentPlayingMeasure();
+}
+
+void MainWindow::setCurrentPlayingMeasure()
+{
+    QString title = tr("(none)");
+
+    if (currentPlayingMeasure < ui->vLayout_measures->count()) {
+
+        QWidget *measureWidget = ui->vLayout_measures->itemAt(currentPlayingMeasure)->widget();
+        Measure *measure = dynamic_cast<Measure*>(measureWidget);
+
+        title = measure->getTitle();
+    }
+
+    ui->lbl_currentPlayingMeasure->setText(title);
+}
+
+// =============================================================================
+// Metronome slots
+
+/**
+ * @brief MainWindow::on_metronomeMeasureCompleted
+ *
+ * If the metronome notifies that a measure is completed
+ * delegate a check for a new measure to another
+ * method
+ *
+ */
+void MainWindow::on_metronomeMeasureCompleted()
+{
+    playNextMeasure();
 }
 
 // =============================================================================

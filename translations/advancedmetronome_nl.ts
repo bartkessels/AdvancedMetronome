@@ -14,129 +14,136 @@
         <translation>Titel van Nummer</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="52"/>
+        <location filename="../src/ui/mainwindow.ui" line="49"/>
         <source>Use pre-metronome ticks</source>
         <translation>Gebruik afteltikken</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="59"/>
+        <location filename="../src/ui/mainwindow.ui" line="56"/>
         <source> BPM</source>
         <translation> BPM</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="75"/>
+        <location filename="../src/ui/mainwindow.ui" line="72"/>
         <source> No. Ticks</source>
         <translation> Aantal tikken</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="147"/>
+        <location filename="../src/ui/mainwindow.ui" line="176"/>
         <source>Current File:</source>
         <translation>Huidige bestand:</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="154"/>
-        <location filename="../src/mainwindow.cpp" line="225"/>
+        <location filename="../src/ui/mainwindow.ui" line="105"/>
+        <location filename="../src/ui/mainwindow.ui" line="183"/>
+        <location filename="../src/mainwindow.cpp" line="103"/>
+        <location filename="../src/mainwindow.cpp" line="259"/>
         <source>(none)</source>
         <translation>(geen)</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="173"/>
+        <location filename="../src/ui/mainwindow.ui" line="91"/>
+        <source>Currently playing measure:</source>
+        <translation>Huidige maat:</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/mainwindow.ui" line="202"/>
         <source>Fi&amp;le</source>
         <translation>B&amp;estand</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="184"/>
+        <location filename="../src/ui/mainwindow.ui" line="213"/>
         <source>&amp;Measure</source>
         <translation>&amp;Maat</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="190"/>
+        <location filename="../src/ui/mainwindow.ui" line="219"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="199"/>
+        <location filename="../src/ui/mainwindow.ui" line="228"/>
         <source>Metro&amp;nome</source>
         <translation>Metro&amp;noom</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="211"/>
+        <location filename="../src/ui/mainwindow.ui" line="240"/>
         <source>&amp;Save</source>
         <translation>Op&amp;slaan</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="219"/>
+        <location filename="../src/ui/mainwindow.ui" line="248"/>
         <source>Sa&amp;ve As</source>
         <translation>Op&amp;slaan Als</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="227"/>
+        <location filename="../src/ui/mainwindow.ui" line="256"/>
         <source>&amp;Add Measure</source>
         <translation>M&amp;aat Toevoegen</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="235"/>
+        <location filename="../src/ui/mainwindow.ui" line="264"/>
         <source>&amp;Open</source>
         <translation>&amp;Openen</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="243"/>
+        <location filename="../src/ui/mainwindow.ui" line="272"/>
         <source>&amp;About Advanced Metronome</source>
         <translation>Over &amp;Advanced Metronome</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="251"/>
+        <location filename="../src/ui/mainwindow.ui" line="280"/>
         <source>About &amp;Qt</source>
         <translation>Over &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="259"/>
+        <location filename="../src/ui/mainwindow.ui" line="288"/>
         <source>&amp;View on GitHub</source>
         <translation>&amp;Bekijk op GitHub</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="267"/>
+        <location filename="../src/ui/mainwindow.ui" line="296"/>
         <source>&amp;Play</source>
         <translation>&amp;Play</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="275"/>
+        <location filename="../src/ui/mainwindow.ui" line="304"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
     </message>
     <message>
-        <location filename="../src/ui/mainwindow.ui" line="283"/>
+        <location filename="../src/ui/mainwindow.ui" line="312"/>
         <source>&amp;New</source>
         <translation>&amp;Nieuw</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="297"/>
+        <location filename="../src/mainwindow.cpp" line="331"/>
         <source>It looks like you have a file opened, are you sure you want to create a new song?</source>
         <translation>Het lijkt er op dat je al een bestand hebt geopend, weet je zeker dat je een nieuw nummer wilt maken?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="343"/>
+        <location filename="../src/mainwindow.cpp" line="377"/>
         <source>Save Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer Opslaan</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="345"/>
-        <location filename="../src/mainwindow.cpp" line="369"/>
+        <location filename="../src/mainwindow.cpp" line="379"/>
+        <location filename="../src/mainwindow.cpp" line="403"/>
         <source>Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="367"/>
+        <location filename="../src/mainwindow.cpp" line="401"/>
         <source>Open Advanced Metronome Song</source>
         <translation>Advanced Metronome Nummer Openen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="385"/>
+        <location filename="../src/mainwindow.cpp" line="419"/>
         <source>The selected file is not a valid Advanced Metronone file</source>
         <translation>Het geselecteerde bestand is geen geldig Advanced Metronome bestand</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="450"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
         <source>Advanced Metronome is created for musicians who want to practice songs which have multiple speeds and/or time-durations. &apos;Cause regular metronomes only allow one constant tempo Advanced Metronome steps in to solve this problem.
 
 Advanced Metronome also gives you the ability to save and share your songs with others so this application will suit many bands in their song-writing process.</source>
@@ -145,12 +152,12 @@ Advanced Metronome also gives you the ability to save and share your songs with 
 Advanced Metronome geeft je ook de mogelijkheid om je nummer op te slaan en de delen met anderen zodat deze applicatie zich leent voor veel bands tijdens het schrijven van eigen nummers.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="385"/>
+        <location filename="../src/mainwindow.cpp" line="419"/>
         <source>Opening File</source>
         <translation>Bestand Openen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="450"/>
+        <location filename="../src/mainwindow.cpp" line="484"/>
         <source>About Advanced Metronome</source>
         <translation>Over Advanced Metronome</translation>
     </message>

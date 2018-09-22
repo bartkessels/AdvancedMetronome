@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="Line" name="line_3">
+    <widget class="Line" name="line_measureSeperator">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -260,7 +260,7 @@
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line_2">
+        <widget class="Line" name="line_timeSignature">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>

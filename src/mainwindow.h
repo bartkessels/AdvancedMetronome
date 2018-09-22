@@ -62,6 +62,10 @@ public:
     // Metronome
     void startMetronome(bool preMetronomeTicks);
 
+    // Measure
+    void playNextMeasure();
+    void setCurrentPlayingMeasure();
+
 private slots:
     // Metronome
     void on_metronomeMeasureCompleted();
