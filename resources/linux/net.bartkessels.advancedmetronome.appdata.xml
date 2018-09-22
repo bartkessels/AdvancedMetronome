@@ -6,13 +6,13 @@
 	<metadata_license>CC0</metadata_license>
 	<project_license>GPL-3.0+</project_license>
 	<name>Advanced Metronome</name>
-	<summary>Advanced Metronome is a small application in which you can set multiple measures.</summary>
+	<summary>Advanced Metronome is a small application in which you can set multiple measures</summary>
 	<translation type="gettext">advancedmetronome</translation>
 	
 	<description>
 		<p>
 			Advanced Metronome is created for musicians who want to practice songs which have multiple
-			speeds and/or time-durations. &lsquo;Cause regular metronomes only allow one constant tempo Advanced Metronome
+			speeds and/or time-durations. Because regular metronomes only allow one constant tempo Advanced Metronome
 			steps in to solve this problem.
 		</p>
 
