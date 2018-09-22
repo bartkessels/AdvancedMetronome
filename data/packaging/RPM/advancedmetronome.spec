@@ -40,7 +40,7 @@ export INSTALL_ROOT=%{buildroot}
 make install
 
 %files
-%{_bindir}/advancesmetronome
+%{_bindir}/advancedmetronome
 %{_datarootdir}/net.bartkessels.advancedmetronome/translations/*
 %{_datarootdir}/appdata/net.bartkessels.advancedmetronome.appdata.xml
 %{_datarootdir}/applications/net.bartkessels.advancedmetronome.desktop
