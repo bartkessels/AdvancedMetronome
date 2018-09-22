@@ -86,16 +86,13 @@ private slots:
 
     // Measure action menu
     void on_actionAdd_Measure_triggered();
-
     void on_actionAbout_Advanced_Metronome_triggered();
-
     void on_actionAbout_Qt_triggered();
-
     void on_actionView_on_GitHub_triggered();
 
 private:
     Ui::MainWindow *ui;
     QString lastSavedFile;
-    Metronome* metronome;
+    Metronome *metronome;
     int currentPlayingMeasure = DEFAULT_CURRENT_PLAYING_MEASURE;
 };
