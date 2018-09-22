@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>805</width>
-    <height>560</height>
+    <width>838</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -106,8 +106,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>388</width>
-           <height>496</height>
+           <width>404</width>
+           <height>441</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -164,7 +164,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>805</width>
+     <width>838</width>
      <height>25</height>
     </rect>
    </property>
@@ -211,7 +211,7 @@
     <string>&amp;Save</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string notr="true">Ctrl+S</string>
    </property>
   </action>
   <action name="actionSave_As">
@@ -219,7 +219,7 @@
     <string>Sa&amp;ve As</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+S</string>
+    <string notr="true">Ctrl+Alt+S</string>
    </property>
   </action>
   <action name="actionAdd_Measure">
@@ -227,7 +227,7 @@
     <string>&amp;Add Measure</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string notr="true">Ctrl+A</string>
    </property>
   </action>
   <action name="actionOpen">
@@ -235,30 +235,31 @@
     <string>&amp;Open</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="actionExport_to_Audio_FIle">
-   <property name="text">
-    <string>&amp;Export to Audio FIle</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string notr="true">Ctrl+O</string>
    </property>
   </action>
   <action name="actionAbout_Advanced_Metronome">
    <property name="text">
     <string>&amp;About Advanced Metronome</string>
    </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
   </action>
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About &amp;Qt</string>
    </property>
+   <property name="shortcut">
+    <string notr="true"/>
+   </property>
   </action>
   <action name="actionView_on_GitHub">
    <property name="text">
     <string>&amp;View on GitHub</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true"/>
    </property>
   </action>
   <action name="actionPlay">
@@ -266,7 +267,7 @@
     <string>&amp;Play</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+P</string>
+    <string notr="true">Ctrl+Shift+P</string>
    </property>
   </action>
   <action name="actionStop">
@@ -274,7 +275,7 @@
     <string>&amp;Stop</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
+    <string notr="true">Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionNew">
@@ -282,7 +283,7 @@
     <string>&amp;New</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string notr="true">Ctrl+N</string>
    </property>
   </action>
  </widget>

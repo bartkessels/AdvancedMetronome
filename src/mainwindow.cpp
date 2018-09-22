@@ -340,7 +340,7 @@ void MainWindow::on_actionSave_triggered()
  */
 void MainWindow::on_actionSave_As_triggered()
 {
-    QFileDialog saveFileDialog(this, tr("Save Metronome Generator Song"));
+    QFileDialog saveFileDialog(this, tr("Save Advanced Metronome Song"));
     saveFileDialog.setAcceptMode(QFileDialog::AcceptSave);
     saveFileDialog.setNameFilter(tr("Advanced Metronome Song") + FILE_EXT_PATTERN);
     saveFileDialog.setDefaultSuffix(FILE_EXT);
@@ -366,7 +366,7 @@ void MainWindow::on_actionOpen_triggered()
     // Open
     QFileDialog openFileDialog(this, tr("Open Advanced Metronome Song"));
     openFileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-    openFileDialog.setNameFilter(tr("Metronome Generator Song") + FILE_EXT_PATTERN);
+    openFileDialog.setNameFilter(tr("Advanced Metronome Song") + FILE_EXT_PATTERN);
     int result = openFileDialog.exec();
 
     if (result == QMessageBox::Accepted &&
@@ -382,7 +382,7 @@ void MainWindow::on_actionOpen_triggered()
 
             // Invalid JSON
             if (document.isNull() || !document.isObject()) {
-                QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Metronome Generator application"));
+                QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Advanced Metronone file"));
                 return;
             }
 
@@ -447,11 +447,12 @@ void MainWindow::on_actionAdd_Measure_triggered()
  */
 void MainWindow::on_actionAbout_Advanced_Metronome_triggered()
 {
-    QMessageBox::about(this, tr("About Advanced Metronome"), tr("Advanced Metronome is a small application in which "
-                                                                "you can set multiple measures with their own speed, "
-                                                                "time-signature and number of repeats.\n\n"
-                                                                "This gives you the ability to practice songs that "
-                                                                "have multiple speeds and/or time-signatures."));
+    QMessageBox::about(this, tr("About Advanced Metronome"), tr("Advanced Metronome is created for musicians who want to practice songs which "
+                                                                "have multiple speeds and/or time-durations. 'Cause regular metronomes only "
+                                                                "allow one constant tempo Advanced Metronome steps in to solve this problem.\n\n"
+                                                                "Advanced Metronome also gives you the ability to save and share your songs "
+                                                                "with others so this application will suit many bands in their song-writing "
+                                                                "process."));
 }
 
 /**
