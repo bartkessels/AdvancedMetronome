@@ -1,0 +1,28 @@
+{
+	"app-id": "net.bartkessels.advancedmetronome",
+	"runtime": "org.kde.Platform",
+	"sdk": "org.kde.Sdk",
+	"command": "advancedmetronome",
+	"finish-args": [
+		"--share=ipc",
+		"--device=dri",
+		"--socket=x11",
+		"--socket=wayland",
+		"--filesystem=host"
+	],
+	"modules": [
+		{
+			"name": "advancedmetronome",
+			"buildsystem": "qmake",
+			"builddir": true,
+			"sources": [
+				{
+					"type": "git",
+					"tag": "1.0",
+					"commit": "",
+					"url": "https://github.com/bartkessels/advancedmetronome"
+				}
+			]
+		}
+	]
+}
