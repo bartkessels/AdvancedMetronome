@@ -463,10 +463,25 @@ void MainWindow::on_actionStop_triggered()
  * Delegate the creation and adding of a new measure object
  * to another method
  *
+ * When a new measure is added scroll to the bottom of the
+ * measures area
+ *
  */
 void MainWindow::on_actionAdd_Measure_triggered()
 {
-    addMeasure(new Measure(this));
+    Measure *newMeasure = new Measure(this);
+    addMeasure(newMeasure);
+
+    int totalMeasures = ui->vLayout_measures->count() + 1;
+    int measureHeight = newMeasure->height();
+    int measuresHeight = totalMeasures * measureHeight;
+
+    // Scroll to bottom
+//    ui->scrollArea_measures->ensureWidgetVisible(newMeasure;//0, newScrollAreaHeight + viewPortHeight, 0, 0);
+//    ui->saWidget_measures->scroll(0, measuresHeight);
+    ui->scrollArea_measures->ensureVisible(0, measuresHeight, 0, 0);
+
+//    ui->scrollArea_measures->scrollContentsBy(0, measuresHeight);
 }
 
 // =============================================================================
