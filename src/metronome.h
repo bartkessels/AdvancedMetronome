@@ -3,41 +3,76 @@
 #include <QObject>
 #include <QSoundEffect>
 #include <QTimer>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QList>
 
-#include <QDebug>
-
+#include "imetronome.h"
+#include "imeasure.h"
 #include "measure.h"
 
-class Metronome : public QObject
+class Metronome : public QObject, public IMetronome
 {
     Q_OBJECT
-
-#define DEFAULT_CURRENT_MEASURE_COUNT 0
-#define DEFAULT_CURRENT_BEAT 1
+    Q_INTERFACES(IMetronome)
 
 public:
     explicit Metronome(QObject *parent = nullptr);
+    virtual ~Metronome(){}
 
-    void setMeasure(Measure *measure);
-    void start();
+    // Measure
+    void addMeasure(IMeasure *measure);
+    void addMeasure();
+    void addMeasure(QJsonObject jsonMeasure);
+    void deleteMeasures();
+
+    // Metronome
+    void start(bool preMetronomeTicks = false);
     void stop();
+    void setupPreMetronome(int bpm, int ticks);
+
+    // JSON
+    void loadMeasuresFromJson(QJsonArray jsonMeasures);
+    QJsonArray getMeasuresAsJson();
 
 private:
-    Measure *measure;
-
-    int currentMeasureCount = DEFAULT_CURRENT_MEASURE_COUNT;
-    int currentBeat = DEFAULT_CURRENT_BEAT;
-
-    QTimer timer;
-
-    QSoundEffect metronomeAccent;
-    QSoundEffect metronomeTick;
-
+    void nextMeasure();
+    void playPreMetronomeTicks();
 
 signals:
-    void measureEnded();
+    void notifyTick(int totalRepetitions, int currentRepetition);
+    void notifyChangeMeasure(IMeasure *measure);
+    void notifyAddMeasure(IMeasure *measure);
+    void notifyStop();
+    void notifyMeasureMoveUp(IMeasure *measure);
+    void notifyMeasureMoveDown(IMeasure *measure);
+
+public slots:
+    void on_measureMoveUp(IMeasure *measure);
+    void on_measureMoveDown(IMeasure *measure);
 
 private slots:
-    void tick();
+    void on_timerTick();
+
+private:
+
+    // Default values
+    const int DEFAULT_CURRENT_MEASURE_COUNT = 0;
+    const int DEFAULT_CURRENT_BEAT = 1;
+    const int PRE_METRONOME_TIME_SIGNATURE_INDEX = 0;
+
+    // Keep track of measures
+    int currentRepetition = DEFAULT_CURRENT_MEASURE_COUNT;
+    int currentBeat = DEFAULT_CURRENT_BEAT;
+    IMeasure *currentMeasure;
+
+    QList<IMeasure*> measures;
+
+    // Pre metronome
+    IMeasure *preMetronome;
+
+    QTimer timer;
+    QSoundEffect metronomeAccent;
+    QSoundEffect metronomeTick;
 };
 

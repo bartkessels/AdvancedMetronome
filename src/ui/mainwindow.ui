@@ -18,9 +18,9 @@
     <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="hLayout_main">
       <item>
        <layout class="QVBoxLayout" name="vLayout_information">
         <item>
@@ -42,71 +42,91 @@
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="vLayout_preMetronome">
+         <widget class="QCheckBox" name="cb_usePreMetronomeTicks">
+          <property name="text">
+           <string>Use pre-metronome ticks</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spn_preMetronomeBeatsPerMinute">
+          <property name="suffix">
+           <string> BPM</string>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>999999999</number>
+          </property>
+          <property name="value">
+           <number>120</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spn_preMetronomeNumberOfTicks">
+          <property name="suffix">
+           <string> No. Ticks</string>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_currentPlayingMeasure">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="hLayout_currentPlayingMeasure">
           <item>
-           <widget class="QCheckBox" name="cb_usePreMetronomeTicks">
+           <widget class="QLabel" name="lbl_currentPlayingMeasureLabel">
             <property name="text">
-             <string>Use pre-metronome ticks</string>
+             <string>Currently playing measure:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spn_preMetronomeBeatsPerMinute">
-            <property name="suffix">
-             <string> BPM</string>
+           <widget class="QLabel" name="lbl_currentPlayingMeasure">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+              <kerning>true</kerning>
+             </font>
             </property>
-            <property name="minimum">
-             <number>1</number>
+            <property name="text">
+             <string>(none)</string>
             </property>
-            <property name="maximum">
-             <number>999999999</number>
-            </property>
-            <property name="value">
-             <number>120</number>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="hLayout_repeitionsUntilNextMeasure">
+          <item>
+           <widget class="QLabel" name="lbl_repetitionsUntilNextMeasureLbl">
+            <property name="text">
+             <string>Repetitions until next measure:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spn_preMetronomeNumberOfTicks">
-            <property name="suffix">
-             <string> No. Ticks</string>
+           <widget class="QLabel" name="lbl_repetitionsUntilNextMeasure">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
-            <property name="value">
-             <number>4</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_currentPlayingMeasure">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+            <property name="text">
+             <string notr="true">0</string>
             </property>
            </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="hLayout_currentPlayingMeasure">
-            <item>
-             <widget class="QLabel" name="lbl_currentPlayingMeasureLabel">
-              <property name="text">
-               <string>Currently playing measure:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="lbl_currentPlayingMeasure">
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-                <kerning>true</kerning>
-               </font>
-              </property>
-              <property name="text">
-               <string>(none)</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
           </item>
          </layout>
         </item>

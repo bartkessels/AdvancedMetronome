@@ -11,6 +11,8 @@
 #include <QMessageBox>
 #include <QDesktopServices>
 
+#include <QDebug>
+
 #include "measure.h"
 #include "metronome.h"
 
@@ -25,23 +27,6 @@ class MainWindow : public QMainWindow
 // URI's
 #define URI_GITHUB "https://github.com/bartkessels/AdvancedMetronome"
 
-// Pre metronome
-#define PRE_METRONOME_TIME_SIGNATURE_NUMERATOR_INDEX 0
-#define PRE_METRONOME_TIME_SIGNATURE_DENOMINATOR_INDEX 0
-
-// JSON Keys
-#define JSON_KEY_SONG_TITLE "song_title"
-#define JSON_KEY_PRE_METRONOME_ENABLED "pre_metronome_enabled"
-#define JSON_KEY_PRE_METRONOME_BPM "pre_metronome_bpm"
-#define JSON_KEY_PRE_METRONOME_TICKS "pre_metronome_number_of_ticks"
-#define JSON_KEY_MEASURES "measures"
-
-// Default values
-#define DEFAULT_PRE_METRONOME_ENABLED true
-#define DEFAULT_PRE_METRONOME_BPM 120
-#define DEFAULT_PRE_METRONOME_TICKS 4
-#define DEFAULT_CURRENT_PLAYING_MEASURE -1
-
 // File extension
 #define FILE_EXT_PATTERN "(*.metgs)"
 #define FILE_EXT ".metgs"
@@ -50,29 +35,30 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // File
+    bool openFile(QString filePath);
+    bool saveFile(QString filePath);
+
+private:
+
     // JSON
-    QJsonDocument getAsJson();
-    void loadFromJson(QString filePath);
+    QJsonDocument getJsonDocument();
+    bool loadFromJson(QJsonDocument jsonDocument);
 
     // Window
-    void addMeasure(Measure *measure);
-    void setCurrentFile(QString currentFile);
     void clearWindow();
 
+private slots:
+
     // Metronome
-    void startMetronome(bool preMetronomeTicks);
+    void on_metronomeTick(int totalRepetitions, int currentRepetition);
+    void on_metronomeAddMeasure(IMeasure *measure);
+    void on_metronomeChangeMeasure(IMeasure *newMeasure);
+    void on_metronomeStop();
 
     // Measure
-    void playNextMeasure();
-    void setCurrentPlayingMeasure();
-
-private slots:
-    // Metronome
-    void on_metronomeMeasureCompleted();
-
-    // Measure move
-    void on_moveMeasureUp(Measure *measure);
-    void on_moveMeasureDown(Measure *measure);
+    void on_measureMoveUp(IMeasure *measure);
+    void on_measureMoveDown(IMeasure *measure);
 
     // File action menu
     void on_actionNew_triggered();
@@ -93,6 +79,19 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QString lastSavedFile;
-    Metronome *metronome;
-    int currentPlayingMeasure = DEFAULT_CURRENT_PLAYING_MEASURE;
+    IMetronome *metronome;
+
+    // JSON keys
+    const char* JSON_KEY_TITLE = "song_title";
+    const char* JSON_KEY_PRE_METRONOME_ENABLED = "pre_metronome_enabled";
+    const char* JSON_KEY_PRE_METRONOME_BPM = "pre_metronome_bpm";
+    const char* JSON_KEY_PRE_METRONOME_TICKS = "pre_metronome_number_of_ticks";
+    const char* JSON_KEY_MEASURES = "measures";
+
+    // Default values
+    const bool DEFAULT_PRE_METRONOME_ENABLED = true;
+    const int DEFAULT_PRE_METRONOME_BPM = 120;
+    const int DEFAULT_PRE_METRONOME_TICKS = 4;
+    const QString DEFAULT_NONE_VALUE = tr("(none)");
+    const int DEFAULT_REPETITIONS_UNTIL_NEXT_MEASURE = 0;
 };

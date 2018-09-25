@@ -6,47 +6,45 @@
 
 #include <QDebug>
 
+#include "imeasure.h"
+
 namespace Ui {
 class Measure;
 }
 
-class Measure : public QWidget
+class Measure : public QWidget, public IMeasure
 {
     Q_OBJECT
-
-#define JSON_KEY_MEASURE_TITLE "measure_title"
-#define JSON_KEY_MEASURE_BPM "beats_per_minute"
-#define JSON_KEY_MEASURE_REPEATS "number_of_repeats"
-#define JSON_KEY_MEASURE_NUMERATOR "numerator"
-#define JSON_KEY_MEASURE_DENOMINATOR "denominator"
-
-#define DEFAULT_TIME_SIGNATURE 4
+    Q_INTERFACES(IMeasure)
 
 public:
     explicit Measure(QWidget *parent = nullptr);
     explicit Measure(QJsonObject jsonObject, QWidget *parent = nullptr);
     ~Measure();
 
-    QString getTitle();
-    int getBeatsPerMinute();
-    int getNumberOfRepeats();
+    // Getters
+    int getBpm();
+    int getRepetitions();
     int getTimeSignature();
     int getNumerator();
-    int getDenominator();
     int getNumeratorIndex();
+    int getDenominator();
     int getDenominatorIndex();
-    QJsonObject getAsJsonObject();
+    QString getTitle();
 
+    // Setters
+    void setBpm(int bpm);
+    void setRepetitions(int repetitions);
+    void setTimeSignatureIndex(int numeratorIndex, int denominatorIndex);
     void setTitle(QString title);
-    void setBeatsPerMinute(int beatsPerMinute);
-    void setNumberOfRepeats(int numberOfRepeats);
-    void setNumeratorIndex(int numeratorIndex);
-    void setDenominatorIndex(int denominatorIndex);
-    void loadFromJsonObject(QJsonObject jsonObject);
+
+    // JSON
+    QJsonObject getJsonObject();
+    void loadFromJson(QJsonObject jsonObject);
 
 signals:
-    void moveMeasureUp(Measure *measure);
-    void moveMeasureDown(Measure *measure);
+    void notifyMoveUp(IMeasure *measure);
+    void notifyMoveDown(IMeasure *measure);
 
 private slots:
     void on_btn_moveUp_clicked();
@@ -55,4 +53,14 @@ private slots:
 
 private:
     Ui::Measure *ui;
+
+    // Time signatures
+    const int DEFAULT_TIME_SIGNATURE = 4;
+
+    // JSON keys
+    const char* JSON_KEY_TITLE = "measure_title";
+    const char* JSON_KEY_BPM = "beats_per_minute";
+    const char* JSON_KEY_REPEATS = "number_of_repeats";
+    const char* JSON_KEY_NUMERATOR = "numerator";
+    const char* JSON_KEY_DENOMINATOR = "denominator";
 };

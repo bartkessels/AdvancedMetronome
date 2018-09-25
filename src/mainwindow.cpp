@@ -13,12 +13,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Connect signals
-    connect(metronome, &Metronome::measureEnded,
-            this, &MainWindow::on_metronomeMeasureCompleted);
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyTick(int,int)), this, SLOT(on_metronomeTick(int,int)));
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyAddMeasure(IMeasure*)), this, SLOT(on_metronomeAddMeasure(IMeasure*)));
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyChangeMeasure(IMeasure*)), this, SLOT(on_metronomeChangeMeasure(IMeasure*)));
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyStop()), this, SLOT(on_metronomeStop()));
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyMeasureMoveUp(IMeasure*)), this, SLOT(on_measureMoveUp(IMeasure*)));
+    connect(dynamic_cast<QObject*>(metronome), SIGNAL(notifyMeasureMoveDown(IMeasure*)), this, SLOT(on_measureMoveDown(IMeasure*)));
 
     // Setup vertical / horizontal layouts
     ui->hLayout_currentFile->setAlignment(Qt::AlignLeft);
     ui->hLayout_currentPlayingMeasure->setAlignment(Qt::AlignLeft);
+    ui->hLayout_repeitionsUntilNextMeasure->setAlignment(Qt::AlignLeft);
     ui->vLayout_information->setAlignment(Qt::AlignTop);
     ui->vLayout_measures->setAlignment(Qt::AlignTop);
 
@@ -32,115 +37,81 @@ MainWindow::~MainWindow()
 }
 
 // =============================================================================
-// Metronome
+// File
 
-/**
- * @brief MainWindow::startMetronome
- * @param preMetronomeTicks wheter or not there should be pre-metronome ticks
- *
- * Start the metronome and check if pre-metronome ticks should be
- * added to the metronome; the default pre-metronome ticks have a
- * time-signature of 1/1
- *
- * If there shouldn't be pre-metronome ticks this method will delegate
- * the loading of a measure to another method
- *
- */
-void MainWindow::startMetronome(bool preMetronomeTicks)
+bool MainWindow::openFile(QString filePath)
 {
-    currentPlayingMeasure = DEFAULT_CURRENT_PLAYING_MEASURE;
-
-    if (preMetronomeTicks) {
-        int beatsPerMinute = ui->spn_preMetronomeBeatsPerMinute->value();
-        int numberOfRepeats = ui->spn_preMetronomeNumberOfTicks->value();
-
-        Measure *preMetronome = new Measure();
-        preMetronome->setBeatsPerMinute(beatsPerMinute);
-        preMetronome->setNumberOfRepeats(numberOfRepeats);
-        preMetronome->setNumeratorIndex(PRE_METRONOME_TIME_SIGNATURE_NUMERATOR_INDEX);
-        preMetronome->setDenominatorIndex(PRE_METRONOME_TIME_SIGNATURE_DENOMINATOR_INDEX);
-
-        metronome->setMeasure(preMetronome);
-    } else {
-        playNextMeasure();
+    QFile file(filePath);
+    if (!file.exists() || !file.open(QIODevice::ReadOnly)) {
+        QMessageBox::warning(this, tr("Opening File"), tr("The selected file does not exist"));
+        return false;
     }
 
-    metronome->start();
-}
+    QString fileContents = QString(file.readAll());
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(fileContents.toUtf8());
+    file.flush();
+    file.close();
 
-// =============================================================================
-// Measure
+    bool fileOpened = loadFromJson(jsonDocument);
 
-/**
- * @brief MainWindow::nextMetronomeMeasure
- *
- * If a measure is completed check if another measure is
- * waiting to be played, if so update the measure in the
- * metronome object and continue, if there aren't any more
- * measures stop the metronome
- *
- */
-void MainWindow::playNextMeasure()
-{
-    currentPlayingMeasure++;
-    if (currentPlayingMeasure < ui->vLayout_measures->count()) {
-
-        QWidget *measureWidget = ui->vLayout_measures->itemAt(currentPlayingMeasure)->widget();
-        Measure *measure = dynamic_cast<Measure*>(measureWidget);
-
-        if (measure != NULL) {
-            metronome->setMeasure(measure);
-        }
-    } else {
-        metronome->stop();
+    if (!fileOpened) {
+        QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Advanced Metronome file"));
+        return false;
     }
 
-    setCurrentPlayingMeasure();
+    lastSavedFile = filePath;
+    ui->lbl_currentFile->setText(lastSavedFile);
+
+    return true;
 }
 
-void MainWindow::setCurrentPlayingMeasure()
+bool MainWindow::saveFile(QString filePath)
 {
-    QString title = tr("(none)");
+    QFile file(filePath);
 
-    if (currentPlayingMeasure < ui->vLayout_measures->count()) {
+    if (file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
+        QJsonDocument document = getJsonDocument();
 
-        QWidget *measureWidget = ui->vLayout_measures->itemAt(currentPlayingMeasure)->widget();
-        Measure *measure = dynamic_cast<Measure*>(measureWidget);
+        file.write(document.toJson());
+        file.flush();
+        file.close();
 
-        title = measure->getTitle();
+        return true;
     }
 
-    ui->lbl_currentPlayingMeasure->setText(title);
+    return false;
 }
 
-// =============================================================================
-// Metronome slots
-
-/**
- * @brief MainWindow::on_metronomeMeasureCompleted
- *
- * If the metronome notifies that a measure is completed
- * delegate a check for a new measure to another
- * method
- *
- */
-void MainWindow::on_metronomeMeasureCompleted()
-{
-    playNextMeasure();
-}
 
 // =============================================================================
 // JSON
 
-/**
- * @brief MainWindow::getAsJson
- * @return a jsonDocument representation of the entered data
- *
- * Get all the data the user has entered into the application and
- * all the measures the user has added
- *
- */
-QJsonDocument MainWindow::getAsJson()
+bool MainWindow::loadFromJson(QJsonDocument jsonDocument)
+{
+    // Invalid JSON
+    if (jsonDocument.isNull() || !jsonDocument.isObject()) {
+        return false;
+    }
+
+    clearWindow();
+
+    QJsonObject jsonObject = jsonDocument.object();
+    QString songTitle = jsonObject.value(JSON_KEY_TITLE).toString();
+    bool preMetronomeEnabled = jsonObject.value(JSON_KEY_PRE_METRONOME_ENABLED).toBool();
+    int preMetronomeBeatsPerMinute = jsonObject.value(JSON_KEY_PRE_METRONOME_BPM).toInt();
+    int preMetronomeNumberOfTicks = jsonObject.value(JSON_KEY_PRE_METRONOME_TICKS).toInt();
+    QJsonArray jsonArrayMeasures = jsonObject.value(JSON_KEY_MEASURES).toArray();
+    metronome->loadMeasuresFromJson(jsonArrayMeasures);
+
+    ui->le_songTitle->setText(songTitle);
+    ui->cb_usePreMetronomeTicks->setChecked(preMetronomeEnabled);
+    ui->spn_preMetronomeBeatsPerMinute->setValue(preMetronomeBeatsPerMinute);
+    ui->spn_preMetronomeNumberOfTicks->setValue(preMetronomeNumberOfTicks);
+
+    return true;
+}
+
+QJsonDocument MainWindow::getJsonDocument()
 {
     QJsonDocument jsonDocument;
     QJsonObject jsonObject;
@@ -148,16 +119,9 @@ QJsonDocument MainWindow::getAsJson()
     bool preMetronomeEnabled = ui->cb_usePreMetronomeTicks->isChecked();
     int preMetronomeBeatsPerMinute = ui->spn_preMetronomeBeatsPerMinute->value();
     int preMetronomeNumberOfTicks= ui->spn_preMetronomeNumberOfTicks->value();
-    QJsonArray jsonArrayMeasures;
+    QJsonArray jsonArrayMeasures = metronome->getMeasuresAsJson();
 
-    // Iterate over measures
-    for (int i = 0; i < ui->vLayout_measures->count(); i++) {
-        QWidget *measureWidget = ui->vLayout_measures->itemAt(i)->widget();
-        Measure *measure = dynamic_cast<Measure*>(measureWidget);
-        jsonArrayMeasures.insert(i, measure->getAsJsonObject());
-    }
-
-    jsonObject.insert(JSON_KEY_SONG_TITLE, songTitle);
+    jsonObject.insert(JSON_KEY_TITLE, songTitle);
     jsonObject.insert(JSON_KEY_PRE_METRONOME_ENABLED, preMetronomeEnabled);
     jsonObject.insert(JSON_KEY_PRE_METRONOME_BPM, preMetronomeBeatsPerMinute);
     jsonObject.insert(JSON_KEY_PRE_METRONOME_TICKS, preMetronomeNumberOfTicks);
@@ -167,96 +131,9 @@ QJsonDocument MainWindow::getAsJson()
     return jsonDocument;
 }
 
-/**
- * @brief MainWindow::loadFromJson
- * @param jsonDocument the jsonDocument with all values
- *
- * Set values from json to the fields the user can edit,
- * this method also iterates over the measures array but
- * does not set the values for each measure
- *
- */
-void MainWindow::loadFromJson(QString filePath)
-{
-    QFile file(filePath);
-    if (!file.exists() || !file.open(QIODevice::ReadOnly)) {
-        QMessageBox::warning(this, tr("Opening File"), tr("The selected file does not exist"));
-        return;
-    }
-
-    QString fileContents = QString(file.readAll());
-    QJsonDocument document = QJsonDocument::fromJson(fileContents.toUtf8());
-    file.flush();
-    file.close();
-
-    // Invalid JSON
-    if (document.isNull() || !document.isObject()) {
-        QMessageBox::warning(this, tr("Opening File"), tr("The selected file is not a valid Advanced Metronone file"));
-        return;
-    }
-
-    clearWindow();
-    setCurrentFile(filePath);
-
-    QJsonObject jsonObject = document.object();
-    QString songTitle = jsonObject.value(JSON_KEY_SONG_TITLE).toString();
-    bool preMetronomeEnabled = jsonObject.value(JSON_KEY_PRE_METRONOME_ENABLED).toBool();
-    int preMetronomeBeatsPerMinute = jsonObject.value(JSON_KEY_PRE_METRONOME_BPM).toInt();
-    int preMetronomeNumberOfTicks = jsonObject.value(JSON_KEY_PRE_METRONOME_TICKS).toInt();
-    QJsonArray jsonArrayMeasures = jsonObject.value(JSON_KEY_MEASURES).toArray();
-
-    for (int i = 0; i < jsonArrayMeasures.count(); i++) {
-        QJsonObject jsonMeasure = jsonArrayMeasures.at(i).toObject();
-        addMeasure(new Measure(jsonMeasure, this));
-    }
-
-    ui->le_songTitle->setText(songTitle);
-    ui->cb_usePreMetronomeTicks->setChecked(preMetronomeEnabled);
-    ui->spn_preMetronomeBeatsPerMinute->setValue(preMetronomeBeatsPerMinute);
-    ui->spn_preMetronomeNumberOfTicks->setValue(preMetronomeNumberOfTicks);
-}
-
 // =============================================================================
 // Window
 
-/**
- * @brief MainWindow::addMeasure
- * @param measure the measure to add
- *
- * Add a measure to the measures list and connect all the required
- * signals for the up/down buttons
- *
- */
-void MainWindow::addMeasure(Measure *measure)
-{
-    connect(measure, &Measure::moveMeasureUp, this, &MainWindow::on_moveMeasureUp);
-    connect(measure, &Measure::moveMeasureDown, this, &MainWindow::on_moveMeasureDown);
-
-    ui->vLayout_measures->addWidget(measure);
-}
-
-/**
- * @brief MainWindow::setCurrentFile
- * @param currentFile the file that is being edited
- *
- * Update the member variable and UI to make sure
- * the location of the currently edited file is
- * being saved
- *
- */
-void MainWindow::setCurrentFile(QString currentFile)
-{
-    ui->lbl_currentFile->setText(currentFile);
-    lastSavedFile = currentFile;
-}
-
-/**
- * @brief MainWindow::clearWindow
- *
- * Set all song elements to their default values and remove
- * all measures
- *
- */
 void MainWindow::clearWindow()
 {
     // Clear song
@@ -265,65 +142,112 @@ void MainWindow::clearWindow()
     ui->spn_preMetronomeBeatsPerMinute->setValue(DEFAULT_PRE_METRONOME_BPM);
     ui->spn_preMetronomeNumberOfTicks->setValue(DEFAULT_PRE_METRONOME_TICKS);
 
-    // Clear measures
-    for (int i = 0; i < ui->vLayout_measures->count(); i++) {
-        ui->vLayout_measures->itemAt(i)->widget()->deleteLater();
-    }
+    // Delete metronome
+    metronome->deleteMeasures();
 
     // Clear file
     lastSavedFile.clear();
-    ui->lbl_currentFile->setText(tr("(none)"));
+    ui->lbl_currentFile->setText(DEFAULT_NONE_VALUE);
+    ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
 }
 
 // =============================================================================
-// Measure move
+// Slots
+
+void MainWindow::on_metronomeTick(int totalRepetitions, int currentRepetition)
+{
+    qInfo() << "on_metronomeTick";
+
+    if (currentRepetition > totalRepetitions) {
+        return;
+    }
+
+    int repetitionsLeft = totalRepetitions - currentRepetition;
+
+    ui->lbl_repetitionsUntilNextMeasure->setText(
+                QString::number(repetitionsLeft));
+
+}
+
+void MainWindow::on_metronomeAddMeasure(IMeasure *measure)
+{
+    if (measure != NULL) {
+        ui->vLayout_measures->addWidget(dynamic_cast<QWidget*>(measure));
+    }
+}
 
 /**
- * @brief MainWindow::on_moveMeasureUp
- * @param measure the measure that needs to be moved up
+ * @brief MainWindow::on_metronomeChangeMeasure
+ * @param newMeasure the measure that is being played right now
  *
- * Move the measure that is being given one position up
- * if the measure isn't already at the top
+ * Display the title of the currently playing measure on the
+ * screen
  *
  */
-void MainWindow::on_moveMeasureUp(Measure *measure)
+void MainWindow::on_metronomeChangeMeasure(IMeasure *newMeasure)
 {
-    int currentIndex = ui->vLayout_measures->indexOf(measure);
-    int previousIndex = currentIndex - 1;
 
-    if (previousIndex >= 0) {
-        QWidget *measureWidget = ui->vLayout_measures->itemAt(previousIndex)->widget();
-        Measure *previousMeasure = dynamic_cast<Measure*>(measureWidget);
+    if (newMeasure == NULL) {
+        ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
+        return;
+    }
+
+    ui->lbl_currentPlayingMeasure->setText(newMeasure->getTitle());
+}
+
+void MainWindow::on_metronomeStop()
+{
+    qInfo() << "on_metronomeStop";
+
+    ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
+    ui->lbl_repetitionsUntilNextMeasure->setText(
+                QString::number(DEFAULT_REPETITIONS_UNTIL_NEXT_MEASURE));
+}
+
+void MainWindow::on_measureMoveUp(IMeasure *measure)
+{
+    QWidget *currentWidget = dynamic_cast<QWidget*>(measure);
+
+    if (currentWidget == NULL) {
+        qInfo() << "Current widget is NULL";
+        return;
+    }
+
+    int totalWidgets = ui->vLayout_measures->count();
+    int currentIndex = ui->vLayout_measures->indexOf(currentWidget);
+    int nextIndex = currentIndex + 1;
+
+    if (nextIndex < totalWidgets) {
+        QWidget *nextWidget= ui->vLayout_measures->itemAt(nextIndex)->widget();
 
         // Switch the measures
-        if (previousMeasure != NULL) {
-            ui->vLayout_measures->insertWidget(previousIndex, measure);
-            ui->vLayout_measures->insertWidget(currentIndex, previousMeasure);
+        if (nextWidget != NULL) {
+            ui->vLayout_measures->insertWidget(currentIndex, nextWidget);
+            ui->vLayout_measures->insertWidget(nextIndex, currentWidget);
         }
     }
 }
 
-/**
- * @brief MainWindow::on_moveMeasureDown
- * @param measure the measure that needs to be moved down
- *
- * Move the measure that is being given one position down
- * if the measure isn't already at the bottom
- *
- */
-void MainWindow::on_moveMeasureDown(Measure *measure)
+void MainWindow::on_measureMoveDown(IMeasure *measure)
 {
-    int currentIndex = ui->vLayout_measures->indexOf(measure);
-    int nextIndex = currentIndex + 1;
 
-    if (nextIndex < ui->vLayout_measures->count()) {
-        QWidget *measureWidget = ui->vLayout_measures->itemAt(nextIndex)->widget();
-        Measure *nextMeasure = dynamic_cast<Measure*>(measureWidget);
+    QWidget *currentWidget = dynamic_cast<QWidget*>(measure);
+
+    if (currentWidget == NULL) {
+        qInfo() << "Current widget is NULL";
+        return;
+    }
+
+    int currentIndex = ui->vLayout_measures->indexOf(currentWidget);
+    int previousIndex = currentIndex - 1;
+
+    if (previousIndex >= 0) {
+        QWidget *previousWidget = ui->vLayout_measures->itemAt(previousIndex)->widget();
 
         // Switch the measures
-        if (nextMeasure != NULL) {
-            ui->vLayout_measures->insertWidget(currentIndex, nextMeasure);
-            ui->vLayout_measures->insertWidget(nextIndex, measure);
+        if (previousWidget != NULL) {
+            ui->vLayout_measures->insertWidget(previousIndex, currentWidget);
+            ui->vLayout_measures->insertWidget(currentIndex, previousWidget);
         }
     }
 }
@@ -369,15 +293,7 @@ void MainWindow::on_actionSave_triggered()
         return;
     }
 
-    QFile file(lastSavedFile);
-
-    if (file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) {
-        QJsonDocument document = getAsJson();
-
-        file.write(document.toJson());
-        file.flush();
-        file.close();
-    }
+    openFile(lastSavedFile);
 }
 
 /**
@@ -398,8 +314,7 @@ void MainWindow::on_actionSave_As_triggered()
 
     if (result == QMessageBox::Accepted &&
             saveFileDialog.selectedFiles().length() > 0) {
-        setCurrentFile(saveFileDialog.selectedFiles().first());
-        on_actionSave_triggered();
+        saveFile(saveFileDialog.selectedFiles().first());
     }
 }
 
@@ -421,8 +336,7 @@ void MainWindow::on_actionOpen_triggered()
 
     if (result == QMessageBox::Accepted &&
             openFileDialog.selectedFiles().length() > 0) {
-        QString selectedFile = openFileDialog.selectedFiles().first();
-        loadFromJson(selectedFile);
+        openFile(openFileDialog.selectedFiles().first());
     }
 }
 
@@ -440,7 +354,11 @@ void MainWindow::on_actionOpen_triggered()
 void MainWindow::on_actionPlay_triggered()
 {
     bool usePreMetronome = ui->cb_usePreMetronomeTicks->isChecked();
-    startMetronome(usePreMetronome);
+    int preMetronomeBpm = ui->spn_preMetronomeBeatsPerMinute->value();
+    int preMetronomeTicks = ui->spn_preMetronomeNumberOfTicks->value();
+
+    metronome->setupPreMetronome(preMetronomeBpm, preMetronomeTicks);
+    metronome->start(usePreMetronome);
 }
 
 /**
@@ -466,7 +384,7 @@ void MainWindow::on_actionStop_triggered()
  */
 void MainWindow::on_actionAdd_Measure_triggered()
 {
-    addMeasure(new Measure(this));
+    metronome->addMeasure();
 }
 
 // =============================================================================
