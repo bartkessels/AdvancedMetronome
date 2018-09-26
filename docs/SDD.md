@@ -30,7 +30,7 @@ __Advanced Metronome__
 	        + [2.1.2.8 UC08 - Open file](#2128-uc08---open-file)
 	        + [2.1.2.9 UC08 - New song](#2129-uc09---new-song)
         - [2.1.3 Design Decisions](#213-design-decisions)
-- [3. Sources](#3-Sources)
+- [3. Sources](#3-sources)
 
 ## 1. Introduction
 
