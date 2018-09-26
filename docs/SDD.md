@@ -20,19 +20,19 @@ __Advanced Metronome__
     - [2.1 Design Advanced Metronome](#21-design-advanced-metronome)
         - [2.1.1 Class Diagram](#211-class-diagram)
         - [2.1.2 Sequence Diagram](#212-sequence-diagram)
-	        + [2.1.2.1 UC01 - Add measure](#2121-uc01-add-measure)
-	        + [2.1.2.2 UC02 - Move measure up](#2122-uc02-move-measure-up)
-	        + [2.1.2.3 UC03 - Move measure down](#2123-uc03-move-measure-down)
-	        + [2.1.2.4 UC04 - Delete measure](#2124-uc04-delete-measure)
-	        + [2.1.2.5 UC05 - Start metronome](#2125-uc05-start-metronome)
-	        + [2.1.2.6 UC06 - Stop metronome](#2126-uc06-stop-metronome)
-	        + [2.1.2.7 UC07 - Save file](#2127-uc07-save-file)
-	        + [2.1.2.8 UC08 - Open file](#2128-uc08-open-file)
-	        + [2.1.2.9 UC08 - New song](#2129-uc09-new-song)
+	        + [2.1.2.1 UC01 - Add measure](#2121-uc01---add-measure)
+	        + [2.1.2.2 UC02 - Move measure up](#2122-uc02---move-measure-up)
+	        + [2.1.2.3 UC03 - Move measure down](#2123-uc03---move-measure-down)
+	        + [2.1.2.4 UC04 - Delete measure](#2124-uc04---delete-measure)
+	        + [2.1.2.5 UC05 - Start metronome](#2125---uc05-start-metronome)
+	        + [2.1.2.6 UC06 - Stop metronome](#2126---uc06-stop-metronome)
+	        + [2.1.2.7 UC07 - Save file](#2127-uc07---save-file)
+	        + [2.1.2.8 UC08 - Open file](#2128-uc08---open-file)
+	        + [2.1.2.9 UC08 - New song](#2129-uc09---new-song)
         - [2.1.3 Design Decisions](#213-design-decisions)
 - [3. Sources](#3-Sources)
 
-## Introduction
+## 1. Introduction
 
 ### 1.1 Description
 
@@ -58,7 +58,7 @@ _Table 1.3.1: Definitions, acronyms and abbreviations_
 
 <br>
 
-## 2. Details Design Description
+## 2. Detailed Design Description
 
 This chapter the technical decisions will be discussed and all the choices will be shown in UML diagrams.
 
