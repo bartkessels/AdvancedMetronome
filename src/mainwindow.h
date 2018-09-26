@@ -47,6 +47,7 @@ private:
 
     // Window
     void clearWindow();
+    void swapMeasures(int widgetOne, int widgetTwo);
 
 private slots:
 

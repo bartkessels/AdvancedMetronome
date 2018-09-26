@@ -24,16 +24,32 @@ Measure::~Measure()
 // =============================================================================
 // Getters
 
+/**
+ * @brief Measure::getBpm
+ * @return beats per minute for the measure
+ */
 int Measure::getBpm()
 {
     return ui->spn_beatsPerMinute->value();
 }
 
+/**
+ * @brief Measure::getRepetitions
+ * @return total repetitions for the measure
+ */
 int Measure::getRepetitions()
 {
     return ui->spn_numberOfRepeats->value();
 }
 
+/**
+ * @brief Measure::getTimeSignature
+ * @return the time signature for the measure
+ *
+ * Calculate the time signature from the user entered
+ * numerator and denominator
+ *
+ */
 int Measure::getTimeSignature()
 {
     int numerator = getNumerator();
@@ -46,26 +62,46 @@ int Measure::getTimeSignature()
     return (numerator / denominator) * denominator;
 }
 
+/**
+ * @brief Measure::getNumerator
+ * @return the value of the numerator spinner
+ */
 int Measure::getNumerator()
 {
     return ui->cbox_timeSignatureNumerator->currentText().toInt();
 }
 
+/**
+ * @brief Measure::getNumeratorIndex
+ * @return the index of the numerator spinner
+ */
 int Measure::getNumeratorIndex()
 {
     return ui->cbox_timeSignatureNumerator->currentIndex();
 }
 
+/**
+ * @brief Measure::getDenominator
+ * @return the value of the denominator spinner
+ */
 int Measure::getDenominator()
 {
     return ui->cbox_timeSignatureDenominator->currentText().toInt();
 }
 
+/**
+ * @brief Measure::getDenominatorIndex
+ * @return the index of the denominator spinner
+ */
 int Measure::getDenominatorIndex()
 {
     return ui->cbox_timeSignatureDenominator->currentIndex();
 }
 
+/**
+ * @brief Measure::getTitle
+ * @return the title for the measure
+ */
 QString Measure::getTitle()
 {
     return ui->le_title->text();
@@ -74,6 +110,13 @@ QString Measure::getTitle()
 // =============================================================================
 // Setter
 
+/**
+ * @brief Measure::setBpm
+ * @param beatsPerMinute the beats per minute for the measure
+ *
+ * Set the beats per minute for the measure
+ *
+ */
 void Measure::setBpm(int beatsPerMinute)
 {
     int minBeatsPerMinute = ui->spn_beatsPerMinute->minimum();
@@ -84,22 +127,45 @@ void Measure::setBpm(int beatsPerMinute)
     }
 }
 
+/**
+ * @brief Measure::setRepetitions
+ * @param repetitions the total repetitions for the measure
+ *
+ * Set the total repetitions for the measure
+ *
+ */
 void Measure::setRepetitions(int repetitions)
 {
     int minRepetitions= ui->spn_numberOfRepeats->minimum();
     int maxRepetitions = ui->spn_numberOfRepeats->maximum();
 
-    if (repetitions >= minRepetitions && maxRepetitions <= repetitions) {
+    if (repetitions >= minRepetitions && repetitions <= maxRepetitions) {
         ui->spn_numberOfRepeats->setValue(repetitions);
     }
 }
 
+/**
+ * @brief Measure::setTimeSignatureIndex
+ * @param numeratorIndex index of the numerator spinner
+ * @param denominatorIndex index of the denominator spinner
+ *
+ * Set the time signature based on the indices for the
+ * numerator and denominator spinners
+ *
+ */
 void Measure::setTimeSignatureIndex(int numeratorIndex, int denominatorIndex)
 {
     ui->cbox_timeSignatureNumerator->setCurrentIndex(numeratorIndex);
     ui->cbox_timeSignatureDenominator->setCurrentIndex(denominatorIndex);
 }
 
+/**
+ * @brief Measure::setTitle
+ * @param title the title for the measure
+ *
+ * Set the title for the measure
+ *
+ */
 void Measure::setTitle(QString title)
 {
     ui->le_title->setText(title);
@@ -108,6 +174,13 @@ void Measure::setTitle(QString title)
 // =============================================================================
 // Json
 
+/**
+ * @brief Measure::getJsonObject
+ * @return json representation of the measure
+ *
+ * Put all user fillable fields into a json object
+ *
+ */
 QJsonObject Measure::getJsonObject()
 {
     QString title = getTitle();
@@ -126,6 +199,14 @@ QJsonObject Measure::getJsonObject()
     return jsonObject;
 }
 
+/**
+ * @brief Measure::loadFromJson
+ * @param jsonObject the json object that needs to be loaded
+ *
+ * Load all the json values into the corresponding user
+ * fillable fields
+ *
+ */
 void Measure::loadFromJson(QJsonObject jsonObject)
 {
     QString title = jsonObject.value(JSON_KEY_TITLE).toString();

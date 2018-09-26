@@ -39,6 +39,16 @@ MainWindow::~MainWindow()
 // =============================================================================
 // File
 
+/**
+ * @brief MainWindow::openFile
+ * @param filePath the location of the file to open
+ * @return wheter or not the file could be opened
+ *
+ * Read the file and turn it's contents into a json document and
+ * delegate the loading of it to another method; if the json document
+ * could not be loaded by the other method return false
+ *
+ */
 bool MainWindow::openFile(QString filePath)
 {
     QFile file(filePath);
@@ -65,6 +75,14 @@ bool MainWindow::openFile(QString filePath)
     return true;
 }
 
+/**
+ * @brief MainWindow::saveFile
+ * @param filePath the path to save the file to
+ * @return wheter or not the file was saved
+ *
+ * Write a json document to the given file path
+ *
+ */
 bool MainWindow::saveFile(QString filePath)
 {
     QFile file(filePath);
@@ -86,6 +104,16 @@ bool MainWindow::saveFile(QString filePath)
 // =============================================================================
 // JSON
 
+/**
+ * @brief MainWindow::loadFromJson
+ * @param jsonDocument the json document that needs to be loaded
+ * @return wheter or not the json document could be loaded
+ *
+ * Load all the values from the json document in the correct
+ * user fillable fields; if the json document isn't valid then
+ * this method will return false and not load the fields
+ *
+ */
 bool MainWindow::loadFromJson(QJsonDocument jsonDocument)
 {
     // Invalid JSON
@@ -111,6 +139,14 @@ bool MainWindow::loadFromJson(QJsonDocument jsonDocument)
     return true;
 }
 
+/**
+ * @brief MainWindow::getJsonDocument
+ * @return JSON representation of the user fillable fields
+ *
+ * Put all user fillable fields into a JSON document; the jsonification
+ * is handled by the metronome object
+ *
+ */
 QJsonDocument MainWindow::getJsonDocument()
 {
     QJsonDocument jsonDocument;
@@ -134,6 +170,13 @@ QJsonDocument MainWindow::getJsonDocument()
 // =============================================================================
 // Window
 
+/**
+ * @brief MainWindow::clearWindow
+ *
+ * Empty and set all the user fillable fields
+ * to their defaults
+ *
+ */
 void MainWindow::clearWindow()
 {
     // Clear song
@@ -151,13 +194,43 @@ void MainWindow::clearWindow()
     ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
 }
 
+/**
+ * @brief MainWindow::swapMeasures
+ * @param indexOne first measure to swap with second measure
+ * @param indexTwo second measure to swap with first measure
+ *
+ * Swap two measures at given indices
+ */
+void MainWindow::swapMeasures(int indexOne, int indexTwo)
+{
+    int totalMeasures = ui->vLayout_measures->count();
+    bool indexOneExists = (indexOne >= 0 && indexOne <= totalMeasures);
+    bool indexTwoExists = (indexTwo >= 0 && indexTwo <= totalMeasures);
+    bool indicesAreSame = (indexOne == indexTwo);
+
+    if (!indicesAreSame && indexOneExists && indexTwoExists) {
+        QWidget *widgetOne = ui->vLayout_measures->itemAt(indexOne)->widget();
+        QWidget *widgetTwo = ui->vLayout_measures->itemAt(indexTwo)->widget();
+
+        ui->vLayout_measures->insertWidget(indexOne, widgetTwo);
+        ui->vLayout_measures->insertWidget(indexTwo, widgetOne);
+    }
+}
+
 // =============================================================================
 // Slots
 
+/**
+ * @brief MainWindow::on_metronomeTick
+ * @param totalRepetitions total repetitions for a measure
+ * @param currentRepetition current repetition the measure is in
+ *
+ * Update the UI to show the user how many repetitions of a
+ * measure are left
+ *
+ */
 void MainWindow::on_metronomeTick(int totalRepetitions, int currentRepetition)
 {
-    qInfo() << "on_metronomeTick";
-
     if (currentRepetition > totalRepetitions) {
         return;
     }
@@ -169,6 +242,13 @@ void MainWindow::on_metronomeTick(int totalRepetitions, int currentRepetition)
 
 }
 
+/**
+ * @brief MainWindow::on_metronomeAddMeasure
+ * @param measure the measure to add to the measures layout
+ *
+ * Add the given measure to the measures layout
+ *
+ */
 void MainWindow::on_metronomeAddMeasure(IMeasure *measure)
 {
     if (measure != NULL) {
@@ -195,61 +275,60 @@ void MainWindow::on_metronomeChangeMeasure(IMeasure *newMeasure)
     ui->lbl_currentPlayingMeasure->setText(newMeasure->getTitle());
 }
 
+/**
+ * @brief MainWindow::on_metronomeStop
+ *
+ * Update UI elements to show that the metronome has stopped
+ *
+ */
 void MainWindow::on_metronomeStop()
 {
-    qInfo() << "on_metronomeStop";
-
     ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
     ui->lbl_repetitionsUntilNextMeasure->setText(
                 QString::number(DEFAULT_REPETITIONS_UNTIL_NEXT_MEASURE));
 }
 
+/**
+ * @brief MainWindow::on_measureMoveUp
+ * @param measure the measure to move up in the scroll area
+ *
+ * Move the given measure on position up in the scroll area
+ *
+ */
 void MainWindow::on_measureMoveUp(IMeasure *measure)
 {
     QWidget *currentWidget = dynamic_cast<QWidget*>(measure);
 
     if (currentWidget == NULL) {
-        qInfo() << "Current widget is NULL";
         return;
     }
 
-    int totalWidgets = ui->vLayout_measures->count();
     int currentIndex = ui->vLayout_measures->indexOf(currentWidget);
     int nextIndex = currentIndex + 1;
 
-    if (nextIndex < totalWidgets) {
-        QWidget *nextWidget= ui->vLayout_measures->itemAt(nextIndex)->widget();
-
-        // Switch the measures
-        if (nextWidget != NULL) {
-            ui->vLayout_measures->insertWidget(currentIndex, nextWidget);
-            ui->vLayout_measures->insertWidget(nextIndex, currentWidget);
-        }
-    }
+    swapMeasures(currentIndex, nextIndex);
 }
 
+/**
+ * @brief MainWindow::on_measureMoveDown
+ * @param measure the measure to move down in the scroll area
+ *
+ * Move the given measure on position down in the scroll area
+ *
+ */
 void MainWindow::on_measureMoveDown(IMeasure *measure)
 {
 
     QWidget *currentWidget = dynamic_cast<QWidget*>(measure);
 
     if (currentWidget == NULL) {
-        qInfo() << "Current widget is NULL";
         return;
     }
 
     int currentIndex = ui->vLayout_measures->indexOf(currentWidget);
     int previousIndex = currentIndex - 1;
 
-    if (previousIndex >= 0) {
-        QWidget *previousWidget = ui->vLayout_measures->itemAt(previousIndex)->widget();
-
-        // Switch the measures
-        if (previousWidget != NULL) {
-            ui->vLayout_measures->insertWidget(previousIndex, currentWidget);
-            ui->vLayout_measures->insertWidget(currentIndex, previousWidget);
-        }
-    }
+    swapMeasures(currentIndex, previousIndex);
 }
 
 // =============================================================================
@@ -403,7 +482,9 @@ void MainWindow::on_actionAbout_Advanced_Metronome_triggered()
                                                                 "allow one constant tempo Advanced Metronome steps in to solve this problem.\n\n"
                                                                 "Advanced Metronome also gives you the ability to save and share your songs "
                                                                 "with others so this application will suit many bands in their song-writing "
-                                                                "process."));
+                                                                "process.\n\n"
+                                                                "This application is licensed under the GPLv3 or higher.\n\n"
+                                                                "Copyright (c) Bart Kessels"));
 }
 
 /**

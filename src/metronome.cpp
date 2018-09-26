@@ -186,6 +186,7 @@ void Metronome::nextMeasure()
 
     if (nextMeasureIndex < measures.size()) {
         currentMeasure = measures.at(nextMeasureIndex);
+        emit notifyChangeMeasure(currentMeasure);
     } else {
         currentMeasure = NULL;
         stop();
@@ -260,8 +261,8 @@ void Metronome::on_timerTick()
     const int interval = MINUTE_IN_MS / bpm;
 
     emit notifyTick(repetitions, currentRepetition);
-
     (currentBeat == DEFAULT_CURRENT_BEAT ? &metronomeAccent : &metronomeTick)->play();
+
     if (currentBeat++ >= timeSignature) {
         currentBeat = DEFAULT_CURRENT_BEAT;
         currentRepetition++;
@@ -274,7 +275,5 @@ void Metronome::on_timerTick()
     if (currentRepetition >= repetitions) {
         currentRepetition = DEFAULT_CURRENT_MEASURE_COUNT;
         nextMeasure();
-
-        emit notifyChangeMeasure(currentMeasure);
     }
 }
