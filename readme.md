@@ -37,9 +37,10 @@ suit many bands in their song-writing process.
 
 ## 3. Documentation
 
-All the available documentation for Advanced Metronome can be found in the [docs folder](docs). The UML diagrams
-are modeled using [Umbrello](https://umbrello.kde.org) a cross-platform application for UML-modeling. There are also
-SVG-images available for these diagrams in case you don't want to install Umbrello at [docs/diagrams/svg](docs/diagrams/svg).
+All the available documentation for Advanced Metronome can be found in the [docs folder](docs). The UML diagrams are modeled using [Umbrello](https://umbrello.kde.org) a cross-platform application for UML-modeling. There are also SVG-images available for these diagrams in case you don't want to install Umbrello at [docs/diagrams/svg](docs/diagrams/svg).
+
+- [Software Requirements Specification](docs/SRS.md)
+- [Software Design Description](docs/SDD.md)
 
 ## 4. Required packages
 
