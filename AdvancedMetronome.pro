@@ -26,8 +26,8 @@ HEADERS += \
         src/mainwindow.h \
         src/metronome.h \
         src/measure.h \
-    src/imetronome.h \
-    src/imeasure.h
+        src/imetronome.h \
+        src/imeasure.h
 
 FORMS += \
         src/ui/mainwindow.ui \
