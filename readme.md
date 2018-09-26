@@ -19,7 +19,7 @@ This gives you the ability to practice songs that have multiple speeds and/or ti
 - [6. Packaging](#6-packaging)
 	+ [6.1 RPM package](#61-rpm-package)
 	+ [6.2 Flatpak bundle](#62-flatpak-bundle)
-- [7. Pre-build binaries](#7-pre---built-binaries)
+- [7. Pre-built binaries](#7-pre---built-binaries)
 	+ [7.1 RPM from CORP](#71-rpm-from-copr)
 
 ## 1. Screenshots
@@ -112,7 +112,7 @@ Once installed you can run it from flatpak like this
 $ flatpak run net.bartkessels.advancedmetronome
 ```
 
-## 7. Pre-build binaries
+## 7. Pre-built binaries
 
 ### 7.1 RPM from COPR
 
