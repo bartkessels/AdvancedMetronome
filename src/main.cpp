@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     // Check if a file is being opened
     if (argc >= 2 && strlen(argv[1]) > 0) {
         qInfo() << "Komt in args: " << argv[1] << endl;
-        w.loadFromJson(argv[1]);
+        w.openFile(argv[1]);
     }
 
     return app.exec();
