@@ -1,4 +1,4 @@
-# Software Design Document
+# Software Design Description
 
 __Advanced Metronome__
 
@@ -119,7 +119,7 @@ _Table 2.1.1.2: Dependencies class diagram Advanced Metronome_
 
 #### 2.1.2 Sequence Diagram
 
-This paragraph contains the various sequence diagrams grouped by the use cases specified in the [Software Requirements Specification](srs.md).
+This paragraph contains the various sequence diagrams grouped by the use cases specified in the [Software Requirements Specification](SRS.md).
 
 ##### 2.1.2.1 UC01 - Add measure
 
