@@ -18,11 +18,11 @@ class Metronome : public QObject, public IMetronome
 
 public:
     explicit Metronome(QObject *parent = nullptr);
-    virtual ~Metronome(){}
+    virtual ~Metronome();
 
     // Measure
-    void addMeasure(IMeasure *measure);
     void addMeasure();
+    void addMeasure(IMeasure *measure);
     void addMeasure(QJsonObject jsonMeasure);
     void deleteMeasures();
 
@@ -32,8 +32,8 @@ public:
     void setupPreMetronome(int bpm, int ticks);
 
     // JSON
+    QJsonArray getMeasuresAsJsonArray();
     void loadMeasuresFromJson(QJsonArray jsonMeasures);
-    QJsonArray getMeasuresAsJson();
 
 private:
     void nextMeasure();

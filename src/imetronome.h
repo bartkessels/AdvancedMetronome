@@ -13,22 +13,23 @@ public:
     virtual ~IMetronome() {}
 
     // Measure
-    virtual void addMeasure(IMeasure *measure) = 0;
     virtual void addMeasure() = 0;
+    virtual void addMeasure(IMeasure *measure) = 0;
     virtual void addMeasure(QJsonObject jsonMeasure) = 0;
     virtual void deleteMeasures() = 0;
-
-    // JSON
-    virtual void loadMeasuresFromJson(QJsonArray jsonMeasures) = 0;
-    virtual QJsonArray getMeasuresAsJson() = 0;
 
     // Metronome
     virtual void start(bool preMetronomeTicks = false) = 0;
     virtual void stop() = 0;
     virtual void setupPreMetronome(int bpm, int ticks) = 0;
 
+    // JSON
+    virtual QJsonArray getMeasuresAsJsonArray() = 0;
+    virtual void loadMeasuresFromJson(QJsonArray jsonMeasures) = 0;
+
 private:
     virtual void nextMeasure() = 0;
+    virtual void playPreMetronomeTicks() = 0;
 
 public:
 

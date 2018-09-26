@@ -17,8 +17,26 @@ Metronome::Metronome(QObject *parent):
     preMetronome->setTitle(tr("Pre-metronome"));
 }
 
+Metronome::~Metronome()
+{
+    delete currentMeasure;
+    delete preMetronome;
+}
+
 // =============================================================================
 // Measure
+
+/**
+ * @brief Metronome::addMeasure
+ *
+ * Create empty measure and add it to the measures list
+ *
+ */
+void Metronome::addMeasure()
+{
+    IMeasure *measure = new Measure();
+    addMeasure(measure);
+}
 
 /**
  * @brief Metronome::addMeasure
@@ -37,18 +55,6 @@ void Metronome::addMeasure(IMeasure *measure)
     connect(dynamic_cast<QObject*>(measure), SIGNAL(notifyDelete(IMeasure*)), this, SLOT(on_measureDelete(IMeasure*)));
 
     emit notifyAddMeasure(measure);
-}
-
-/**
- * @brief Metronome::addMeasure
- *
- * Create empty measure and add it to the measures list
- *
- */
-void Metronome::addMeasure()
-{
-    IMeasure *measure = new Measure();
-    addMeasure(measure);
 }
 
 /**
@@ -132,6 +138,25 @@ void Metronome::setupPreMetronome(int bpm, int ticks)
 // JSON
 
 /**
+ * @brief Metronome::getMeasuresAsJsonArray
+ * @return json representation of the measures
+ *
+ * Get a json array with all the measures
+ *
+ */
+QJsonArray Metronome::getMeasuresAsJsonArray()
+{
+    QJsonArray jsonMeasures;
+
+    for (int index = 0; index < measures.size(); index++) {
+        IMeasure *measure = measures.at(index);
+        jsonMeasures.append(measure->getJsonObject());
+    }
+
+    return jsonMeasures;
+}
+
+/**
  * @brief Metronome::loadFromJson
  * @param jsonObject jsonArray containing all the measures
  *
@@ -144,25 +169,6 @@ void Metronome::loadMeasuresFromJson(QJsonArray jsonMeasures)
         QJsonObject jsonMeasure = jsonMeasures.at(index).toObject();
         addMeasure(jsonMeasure);
     }
-}
-
-/**
- * @brief Metronome::getJsonObject
- * @return json representation of the metronome
- *
- * Get a json object with all the measures
- *
- */
-QJsonArray Metronome::getMeasuresAsJson()
-{
-    QJsonArray jsonMeasures;
-
-    for (int index = 0; index < measures.size(); index++) {
-        IMeasure *measure = measures.at(index);
-        jsonMeasures.append(measure->getJsonObject());
-    }
-
-    return jsonMeasures;
 }
 
 // =============================================================================

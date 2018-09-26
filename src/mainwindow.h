@@ -54,7 +54,7 @@ private slots:
     // Metronome
     void on_metronomeTick(int totalRepetitions, int currentRepetition);
     void on_metronomeAddMeasure(IMeasure *measure);
-    void on_metronomeChangeMeasure(IMeasure *newMeasure);
+    void on_metronomeChangeMeasure(IMeasure *measure);
     void on_metronomeStop();
 
     // Measure
@@ -73,6 +73,8 @@ private slots:
 
     // Measure action menu
     void on_actionAdd_Measure_triggered();
+
+    // Help action menu
     void on_actionAbout_Advanced_Metronome_triggered();
     void on_actionAbout_Qt_triggered();
     void on_actionView_on_GitHub_triggered();

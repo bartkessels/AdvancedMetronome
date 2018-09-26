@@ -264,15 +264,14 @@ void MainWindow::on_metronomeAddMeasure(IMeasure *measure)
  * screen
  *
  */
-void MainWindow::on_metronomeChangeMeasure(IMeasure *newMeasure)
+void MainWindow::on_metronomeChangeMeasure(IMeasure *measure)
 {
-
-    if (newMeasure == NULL) {
+    if (measure == NULL) {
         ui->lbl_currentPlayingMeasure->setText(DEFAULT_NONE_VALUE);
         return;
     }
 
-    ui->lbl_currentPlayingMeasure->setText(newMeasure->getTitle());
+    ui->lbl_currentPlayingMeasure->setText(measure->getTitle());
 }
 
 /**
