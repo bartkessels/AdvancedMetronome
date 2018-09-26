@@ -33,6 +33,7 @@ public:
     // Signals
     virtual void notifyMoveUp(IMeasure *measure) = 0;
     virtual void notifyMoveDown(IMeasure *measure) = 0;
+    virtual void notifyDelete(IMeasure *measure) = 0;
 };
 
 Q_DECLARE_INTERFACE(IMeasure, "IMeasure")

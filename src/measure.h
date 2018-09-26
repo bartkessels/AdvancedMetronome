@@ -45,6 +45,7 @@ public:
 signals:
     void notifyMoveUp(IMeasure *measure);
     void notifyMoveDown(IMeasure *measure);
+    void notifyDelete(IMeasure *measure);
 
 private slots:
     void on_btn_moveUp_clicked();

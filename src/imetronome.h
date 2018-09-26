@@ -43,6 +43,7 @@ public:
     // Slots
     virtual void on_measureMoveUp(IMeasure *measure) = 0;
     virtual void on_measureMoveDown(IMeasure *measure) = 0;
+    virtual void on_measureDelete(IMeasure *measure) = 0;
     virtual void on_timerTick() = 0;
 };
 

@@ -50,6 +50,7 @@ signals:
 public slots:
     void on_measureMoveUp(IMeasure *measure);
     void on_measureMoveDown(IMeasure *measure);
+    void on_measureDelete(IMeasure *measure);
 
 private slots:
     void on_timerTick();
@@ -58,7 +59,7 @@ private:
 
     // Default values
     const int DEFAULT_CURRENT_MEASURE_COUNT = 0;
-    const int DEFAULT_CURRENT_BEAT = 1;
+    const int DEFAULT_CURRENT_BEAT = 1; // Must be one because the time-signature is 1-indexed
     const int PRE_METRONOME_TIME_SIGNATURE_INDEX = 0;
 
     // Keep track of measures

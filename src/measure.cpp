@@ -256,5 +256,6 @@ void Measure::on_btn_moveDown_clicked()
  */
 void Measure::on_btn_delete_clicked()
 {
+    emit notifyDelete(this);
     this->deleteLater();
 }

@@ -34,6 +34,7 @@ void Metronome::addMeasure(IMeasure *measure)
 
     connect(dynamic_cast<QObject*>(measure), SIGNAL(notifyMoveUp(IMeasure*)), this, SLOT(on_measureMoveUp(IMeasure*)));
     connect(dynamic_cast<QObject*>(measure), SIGNAL(notifyMoveDown(IMeasure*)), this, SLOT(on_measureMoveDown(IMeasure*)));
+    connect(dynamic_cast<QObject*>(measure), SIGNAL(notifyDelete(IMeasure*)), this, SLOT(on_measureDelete(IMeasure*)));
 
     emit notifyAddMeasure(measure);
 }
@@ -107,6 +108,7 @@ void Metronome::start(bool preMetronomeTicks)
 void Metronome::stop()
 {
     timer.stop();
+    currentMeasure = NULL;
 
     emit notifyStop();
 }
@@ -181,14 +183,14 @@ void Metronome::nextMeasure()
         return;
     }
 
+    int totalMeasures = measures.count();
     int currentMeasureIndex = measures.indexOf(currentMeasure);
     int nextMeasureIndex = currentMeasureIndex + 1;
 
-    if (nextMeasureIndex < measures.size()) {
+    if (totalMeasures > 0 && nextMeasureIndex < totalMeasures) {
         currentMeasure = measures.at(nextMeasureIndex);
         emit notifyChangeMeasure(currentMeasure);
     } else {
-        currentMeasure = NULL;
         stop();
     }
 }
@@ -237,6 +239,20 @@ void Metronome::on_measureMoveDown(IMeasure *measure)
 }
 
 /**
+ * @brief Metronome::on_measureDelete
+ * @param measure the measure that's being deleted
+ *
+ * Remove the given measure from the measures list
+ *
+ */
+void Metronome::on_measureDelete(IMeasure *measure)
+{
+    if (measures.contains(measure)) {
+        measures.removeOne(measure);
+    }
+}
+
+/**
  * @brief Metronome::on_timerTick
  *
  * Play a tick or accent sound based on the current beat index;
@@ -247,6 +263,9 @@ void Metronome::on_measureMoveDown(IMeasure *measure)
  * This method also keeps track of the allowed times this measure
  * needs to be played; if the total play times exceeds the allowed
  * play times notify the MainWindow that the measure is done
+ *
+ * When emitting the notifyTick subtract 1 from the totalRepetitions
+ * so it ends with 0 instead of 1
  *
  */
 void Metronome::on_timerTick()
@@ -260,8 +279,8 @@ void Metronome::on_timerTick()
     const int bpm = currentMeasure->getBpm();
     const int interval = MINUTE_IN_MS / bpm;
 
-    emit notifyTick(repetitions, currentRepetition);
     (currentBeat == DEFAULT_CURRENT_BEAT ? &metronomeAccent : &metronomeTick)->play();
+    emit notifyTick(repetitions, currentRepetition);
 
     if (currentBeat++ >= timeSignature) {
         currentBeat = DEFAULT_CURRENT_BEAT;
