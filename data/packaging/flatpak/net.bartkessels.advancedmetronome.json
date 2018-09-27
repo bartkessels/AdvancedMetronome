@@ -21,8 +21,8 @@
 			"sources": [
 				{
 					"type": "git",
-					"tag": "1.0",
-					"commit": "404252a7708e8de7d3691af5a920e9f18e88ee0b",
+					"tag": "2.0",
+					"commit": "35e0a2d3daf154dcb30af0da9d59f1fda27899a8",
 					"url": "https://github.com/bartkessels/advancedmetronome"
 				}
 			]

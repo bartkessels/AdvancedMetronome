@@ -1,5 +1,5 @@
 Name:			advancedmetronome
-Version:		1.0
+Version:		2.0
 Release:		1%{dist}
 Summary:		Advanced Metronome is a small application in which you can set multiple measures.
 Group:			Multimedia
@@ -47,5 +47,9 @@ make install
 %{_datarootdir}/icons/hicolor/*/apps/net.bartkessels.advancedmetronome*.*
 
 %changelog
+* Thu Sep 27 2018 Bart Kessels <bartkessels@bk-mail.com> 2.0
+- Show current playing measure title on screen
+- Show repetitions of current playing measure on screen
+
 * Sat Sep 22 2018 Bart Kessels <bartkessels@bk-mail.com> 1.0
 - Initial Release

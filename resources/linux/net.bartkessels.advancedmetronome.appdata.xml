@@ -46,6 +46,13 @@
 	</provides>
 	
 	<releases>
+		<release version="2.0" date="2018-09-27">
+			<p>This release added:</p>
+			<ul>
+				<li>Currently playing measure title is displayed on the screen</li>
+				<li>Number of repetitions left for the currently playing measure is displayed on the screen</li>
+			</ul>
+		</release>
 		<release version="1.0" date="2018-09-22">
 			<p>Initial Release</p>
 		</release>
