@@ -29,7 +29,6 @@ public:
 
 private:
     virtual void nextMeasure() = 0;
-    virtual void playPreMetronomeTicks() = 0;
 
 public:
 

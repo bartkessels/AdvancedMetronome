@@ -155,7 +155,7 @@ QJsonDocument MainWindow::getJsonDocument()
     bool preMetronomeEnabled = ui->cb_usePreMetronomeTicks->isChecked();
     int preMetronomeBeatsPerMinute = ui->spn_preMetronomeBeatsPerMinute->value();
     int preMetronomeNumberOfTicks= ui->spn_preMetronomeNumberOfTicks->value();
-    QJsonArray jsonArrayMeasures = metronome->getMeasuresAsJson();
+    QJsonArray jsonArrayMeasures = metronome->getMeasuresAsJsonArray();
 
     jsonObject.insert(JSON_KEY_TITLE, songTitle);
     jsonObject.insert(JSON_KEY_PRE_METRONOME_ENABLED, preMetronomeEnabled);

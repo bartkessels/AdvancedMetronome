@@ -37,7 +37,6 @@ public:
 
 private:
     void nextMeasure();
-    void playPreMetronomeTicks();
 
 signals:
     void notifyTick(int totalRepetitions, int currentRepetition);
