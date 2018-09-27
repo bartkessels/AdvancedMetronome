@@ -9,6 +9,7 @@ __Advanced Metronome__
 |Name|Date|Version|Edits|
 |:---|:---|:---|:---|
 |Bart Kessels|26 sept 2018|0.1|- First Draft|
+|Bart Kessels|27 sept 2018|0.2|- Fix incorrect title in TOC|
 
 ## Table of Contents
 
@@ -28,7 +29,7 @@ __Advanced Metronome__
 	        + [2.1.2.6 UC06 - Stop metronome](#2126---uc06-stop-metronome)
 	        + [2.1.2.7 UC07 - Save file](#2127-uc07---save-file)
 	        + [2.1.2.8 UC08 - Open file](#2128-uc08---open-file)
-	        + [2.1.2.9 UC08 - New song](#2129-uc09---new-song)
+	        + [2.1.2.9 UC09 - New song](#2129-uc09---new-song)
         - [2.1.3 Design Decisions](#213-design-decisions)
 - [3. Sources](#3-sources)
 
