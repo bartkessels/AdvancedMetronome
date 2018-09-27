@@ -8,8 +8,8 @@ __Advanced Metronome__
 
 |Name|Date|Version|Edits|
 |:---|:---|:---|:---|
-|Bart Kessels|26 sept 2018|0.1|- First Draft|
-|Bart Kessels|27 sept 2018|0.2|- Fix incorrect title in TOC|
+|Bart Kessels|26 sept 2018|0.1|First Draft|
+|Bart Kessels|27 sept 2018|0.2|Fix incorrect title in TOC; Add sequence diagrams|
 
 ## Table of Contents
 
@@ -55,6 +55,7 @@ This paragraph will describe all the definitions, acronyms and abbreviations. Th
 |Term|Description|
 |---:|:---|
 |_UML_|Unified Modeling Language; Used to create high-level technical diagrams for software development (UML.org, 2005).|
+
 _Table 1.3.1: Definitions, acronyms and abbreviations_
 
 <br>
@@ -107,6 +108,7 @@ _Figure 2.1.1.1: Class diagram Advanced Metronome_
 |---:|:---:|:---:|:---|
 |_AMRL01_|`IMetronome` > `IMeasure`|one-to-many|An `IMetronome` implementation has a list of multiple `IMetronome` implementation objects|
 |_AMRL02_|`MainWindow` > `IMetronome`|one-to-one|A `MainWindow` has `IMetronome` implementation object|
+
 _Table 2.1.1.1: Relations class diagram Advanced Metronome_
 
 <br>
@@ -114,32 +116,68 @@ _Table 2.1.1.1: Relations class diagram Advanced Metronome_
 |Dependency number|Between|Description|
 |---:|:---:|:---|
 |_AMDP01_|`MainWindow` > `IMeasure`|The dependency between the `MainWindow` and `IMeasure` gives `MainWindow` the ability to receive implementations of the `IMeasure` interface in the various slots that are connected to the `IMetronome` object (AMRL02)|
+
 _Table 2.1.1.2: Dependencies class diagram Advanced Metronome_
 
 <br>
 
 #### 2.1.2 Sequence Diagram
 
-This paragraph contains the various sequence diagrams grouped by the use cases specified in the [Software Requirements Specification](SRS.md).
+This paragraph contains the various sequence diagrams grouped by the use cases specified in the [Software Requirements Specification](SRS.md). In the sequence diagrams only the method calls to the methods from the class diagram are modeled; the actual implementation of the methods is up to the developer of the sequence diagram.
 
 ##### 2.1.2.1 UC01 - Add measure
 
+![Figure 2.1.2.1.1](diagrams/svg/sd-uc01.svg)
+
+_Figure 2.1.2.1.1: Sequence Diagram for UC01 - Add measure_
+
 ##### 2.1.2.2 UC02 - Move measure up
+
+![Figure 2.1.2.2.1](diagrams/svg/sd-uc02.svg)
+
+_Figure 2.1.2.2.1: Sequence Diagram for UC02 - Move measure up_
 
 ##### 2.1.2.3 UC03 - Move measure down
 
+![Figure 2.1.2.3.1](diagrams/svg/sd-uc03.svg)
+
+_Figure 2.1.2.3.1: Sequence Diagram for UC03 - Move measure down_
+
 ##### 2.1.2.4 UC04 - Delete measure
+
+![Figure 2.1.2.4.1](diagrams/svg/sd-uc04.svg)
+
+_Figure 2.1.2.4.1: Sequence Diagram for UC04 - Delete measure_
 
 ##### 2.1.2.5 UC05 - Start metronome
 
+![Figure 2.1.2.5.1](diagrams/svg/sd-uc05.svg)
+
+_Figure 2.1.2.5.1: Sequence Diagram for UC05 - Start metronome_
+
 ##### 2.1.2.6 UC06 - Stop metronome
+
+![Figure 2.1.2.6.1](diagrams/svg/sd-uc06.svg)
+
+_Figure 2.1.2.6.1: Sequence Diagram for UC06 - Stop metronome_
 
 ##### 2.1.2.7 UC07 - Save file
 
+![Figure 2.1.2.7.1](diagrams/svg/sd-uc07.svg)
+
+_Figure 2.1.2.7.1: Sequence Diagram for UC07 - Save file_
+
 ##### 2.1.2.8 UC08 - Open file
+
+![Figure 2.1.2.8.1](diagrams/svg/sd-uc08.svg)
+
+_Figure 2.1.2.8.1: Sequence Diagram for UC08 - Open file_
 
 ##### 2.1.2.9 UC09 - New song
 
+![Figure 2.1.2.9.1](diagrams/svg/sd-uc09.svg)
+
+_Figure 2.1.2.9.1: Sequence Diagram for UC09 - New song_
 
 #### 2.1.3 Design Decisions
 
