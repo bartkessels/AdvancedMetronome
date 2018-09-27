@@ -371,7 +371,7 @@ void MainWindow::on_actionSave_triggered()
         return;
     }
 
-    openFile(lastSavedFile);
+    saveFile(lastSavedFile);
 }
 
 /**
