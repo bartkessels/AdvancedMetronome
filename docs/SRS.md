@@ -8,7 +8,7 @@ __Advanced Metronome__
 
 |Name|Date|Version|Edits|
 |:---|:---|:---|:---|
-|Bart Kessels|27 sept 2018|0.1|- First Draft|
+|Bart Kessels|27 sept 2018|0.1|First Draft|
 
 ## Table of Contents
 

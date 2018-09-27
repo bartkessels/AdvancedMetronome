@@ -181,8 +181,9 @@ _Figure 2.1.2.9.1: Sequence Diagram for UC09 - New song_
 
 #### 2.1.3 Design Decisions
 
-- Use `on_`-prefix for slots
-- Use `notify`-prefix for signals
+- Every slot must be prefixed with `on_`
+	+ The slots name must correspond with the connecting signal; otherwise it isn't clear for which signal the slot is waiting
+- Every signal must be prefixed with `notify`
 
 ## 3. Sources
 
