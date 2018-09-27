@@ -181,9 +181,25 @@ _Figure 2.1.2.9.1: Sequence Diagram for UC09 - New song_
 
 #### 2.1.3 Design Decisions
 
-- Every slot must be prefixed with `on_`
-	+ The slots name must correspond with the connecting signal; otherwise it isn't clear for which signal the slot is waiting
-- Every signal must be prefixed with `notify`
+__Signals and Slots__<br>
+The slots and signals must be prefixed with `on_` for the slot and `notify` for the signal. This way there is a good distinction between the regular methods and the signals/slots.
+
+<br>
+
+__Slots naming convention__<br>
+The slot must have a similar name as the signal it's listening for. This way it'll be a lot more straight-forward when connecting slots to signals which slot and signal should be connected.
+
+<br>
+
+#### 2.1.3.1 Patterns
+
+__Observer Pattern__<br>
+This one is pretty obvious since the Qt framework is based on this pattern using signals and slots.
+
+<br>
+
+__Strategy Pattern__<br>
+The strategory pattern (or inversion of control) is used by the domain classes, so every class except the MainWindow, so the domain classes can operate without knowing the exact implementation of the other domain classes. They do know which methods they can call 'cause of the interfaces.
 
 ## 3. Sources
 
