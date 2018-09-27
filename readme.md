@@ -3,11 +3,30 @@
 Advanced Metronome is a small application in which you can set multiple measures with their own speed, time-signature and number of repeats.
 This gives you the ability to practice songs that have multiple speeds and/or time-signatures.
 
-## Screenshots
+---
+
+## Table of Contents
+
+- [1. Screenshots](#1-screenshots)
+- [2. What can I do with It?](#2-what-can-i-do-with-it)
+- [3. Documentation](#3-documentation)
+- [4. Required Packages](#4-required-packages)
+	+ [4.1 Building](#41-building)
+	+ [4.2 Installing](#42-installing)
+- [5. How to Build](#5-how-to-build)
+	+ [5.1 Linux](#51-linux)
+	+ [5.2 Windows](#52-windows)
+- [6. Packaging](#6-packaging)
+	+ [6.1 RPM package](#61-rpm-package)
+	+ [6.2 Flatpak bundle](#62-flatpak-bundle)
+- [7. Pre-built binaries](#7-pre---built-binaries)
+	+ [7.1 RPM from CORP](#71-rpm-from-copr)
+
+## 1. Screenshots
 
 ![Advanced Metronome mainwindow](data/screenshots/mainwindow.png)
 
-## What can I do with it?
+## 2. What can I do with it?
 
 Advanced Metronome is created for musicians who want to practice songs which have multiple
 speeds and/or time-durations. 'Cause regular metronomes only allow one constant tempo Advanced Metronome
@@ -16,22 +35,29 @@ steps in to solve this problem.
 Advanced Metronome also gives you the ability to save and share your songs with others so this application will
 suit many bands in their song-writing process.
 
-## Required packages
+## 3. Documentation
 
-### Building
+All the available documentation for Advanced Metronome can be found in the [docs folder](docs). The UML diagrams are modeled using [Umbrello](https://umbrello.kde.org) a cross-platform application for UML-modeling. There are also SVG-images available for these diagrams in case you don't want to install Umbrello at [docs/diagrams/svg](docs/diagrams/svg).
+
+- [Software Requirements Specification](docs/SRS.md)
+- [Software Design Description](docs/SDD.md)
+
+## 4. Required packages
+
+### 4.1 Building
 
 - qt5-devel
 - qt5-qtbase-devel
 - qt5-qtmultimedia-devel
 
-### Installing
+### 4.2 Installing
 
 - qt5
 - qt5-multimedia
 
-## How to build
+## 5. How to build
 
-### Linux
+### 5.1 Linux
 
 ```
 $ qmake
@@ -40,7 +66,7 @@ $ make install
 
 And then run `advancedmetronome`
 
-### Windows
+### 5.2 Windows
 
 This method assumes you're using the Microsoft build tools.
 
@@ -53,9 +79,9 @@ To be able to run Advanced Metronome you need to copy all the
 necessary Qt `.dll` files to the same location as `advancedmetronome.exe`
 so the binary can find the required libraries.
 
-## Packaging
+## 6. Packaging
 
-### RPM package
+### 6.1 RPM package
 
 ```
 $ cd data/packaging/RPM
@@ -65,7 +91,7 @@ $ fedpkg --release f28 local
 
 This will create a RPM file which you can install using your package manager.
 
-### Flatpak bundle
+### 6.2 Flatpak bundle
 
 ```
 $ cd data/packaging/flatpak
@@ -86,9 +112,9 @@ Once installed you can run it from flatpak like this
 $ flatpak run net.bartkessels.advancedmetronome
 ```
 
-## Pre-build binaries
+## 7. Pre-built binaries
 
-### RPM from COPR
+### 7.1 RPM from COPR
 
 If you're running Fedora you can easily install Advanced Metronome from [COPR](https://copr.fedorainfracloud.org/coprs/bartkessels/advancedmetronome/).
 
