@@ -9,6 +9,7 @@ __Advanced Metronome__
 |Name|Date|Version|Edits|
 |:---|:---|:---|:---|
 |Bart Kessels|27 sept 2018|0.1|First Draft|
+|Bart Kessels|28 sept 2018|0.2|Fix incorrect markdown table for brief use-case descriptions|
 
 ## Table of Contents
 
@@ -83,7 +84,7 @@ _Figure 1.5.1: Use-case Diagram_
 <br>
 
 |Use-case number|Use-case name|Brief Description|
-|---:|:---|:---|:---|
+|---:|:---|:---|
 |UC01|Add measure|The actor can add a measure to a song|
 |UC02|Move measure up|The actor can move a measure one place up in the measures list|
 |UC03|Move measure down|The actor can move a measure one place down in the measures list|
