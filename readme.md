@@ -68,16 +68,16 @@ And then run `advancedmetronome`
 
 ### 5.2 Windows
 
-This method assumes you're using the Microsoft build tools.
+This method assumes you're using the [Mingw32](http://www.mingw.org/) executables that can be installed
+along with [Qt](https://www.qt.io/download) itself.
 
 ```
-> qmake
-> nmake release
+> qmake -config release
+> mingw32-make
+> windeployqt bin/advancedmetronome.exe
 ```
-
-To be able to run Advanced Metronome you need to copy all the
-necessary Qt `.dll` files to the same location as `advancedmetronome.exe`
-so the binary can find the required libraries.
+This will create a binary `advancedmetronome.exe` in the `bin/` folder with all the required Qt DLL's,
+to run the application you simply run `start bin/advancedmetronome.exe`.
 
 ## 6. Packaging
 
