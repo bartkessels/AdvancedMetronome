@@ -19,6 +19,7 @@ This gives you the ability to practice songs that have multiple speeds and/or ti
 - [6. Packaging](#6-packaging)
 	+ [6.1 RPM package](#61-rpm-package)
 	+ [6.2 Flatpak bundle](#62-flatpak-bundle)
+	+ [6.3 Windows installer](#63-windows-installer)
 - [7. Pre-built binaries](#7-pre---built-binaries)
 	+ [7.1 RPM from CORP](#71-rpm-from-copr)
 
@@ -111,6 +112,22 @@ Once installed you can run it from flatpak like this
 ```
 $ flatpak run net.bartkessels.advancedmetronome
 ```
+
+### 6.3 Windows installer
+
+__IMPORTANT:__ Please compile the application before trying to create the installer, if you don't compile beforehand the installer
+won't install anything and the installation directory only contains an uninstaller.
+
+The script `create_installer.bat` assumes that the `binarycreator.exe` is in your `PATH` variable, if not please
+add it and afterwards run the script.
+
+```
+> cd data\packaging\Windows
+> create_installer.bat
+```
+
+This will create an executable called `AdvancedMetronomeInstaller.exe` which you can run to install
+Advanced Metronome.
 
 ## 7. Pre-built binaries
 

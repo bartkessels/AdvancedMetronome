@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+	<DisplayName>Advanced Metronome</DisplayName>
+	<Description>Advanced Metronome</Description>
+	<Version>2.0</Version>
+	<ReleaseDate>2018-09-28</ReleaseDate>
+	<Licenses>
+		<License name="GPLv3" file="license.txt" />
+	</Licenses>
+	<Default>true</Default>
+	<Script>installscript.qs</Script>
+</Package>

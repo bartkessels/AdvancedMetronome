@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+	<Name>Advanced Metronome</Name>
+	<Version>Latest</Version>
+	<Title>Advanced Metronome</Title>
+	<Publisher>Bart Kessels</Publisher>
+	<TargetDir>@ApplicationsDir@/Advanced Metronome</TargetDir>
+</Installer>
