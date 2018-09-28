@@ -1,7 +1,7 @@
 .*.stash
 *.pro.user
 
-Makefile
+Makefile*
 
 build
 bin
