@@ -22,6 +22,7 @@ This gives you the ability to practice songs that have multiple speeds and/or ti
 	+ [6.3 Windows installer](#63-windows-installer)
 - [7. Pre-built binaries](#7-pre---built-binaries)
 	+ [7.1 RPM from CORP](#71-rpm-from-copr)
+	+ [7.2 Windows Installer](#72-windows-installer)
 
 ## 1. Screenshots
 
@@ -139,3 +140,8 @@ If you're running Fedora you can easily install Advanced Metronome from [COPR](h
 $ dnf copr enable bartkessels/advancedmetronome
 $ dnf install advancedmetronome
 ```
+
+### 7.2 Windows installer
+
+If you're running Windows and don't want to compile Advanced Metronome you can simply
+download the installation package from the [releases page](https://github.com/bartkessels/AdvancedMetronome/releases).
