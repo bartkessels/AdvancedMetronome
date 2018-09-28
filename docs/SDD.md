@@ -9,7 +9,8 @@ __Advanced Metronome__
 |Name|Date|Version|Edits|
 |:---|:---|:---|:---|
 |Bart Kessels|26 sept 2018|0.1|First Draft|
-|Bart Kessels|27 sept 2018|0.2|Fix incorrect title in TOC; Add sequence diagrams|
+|Bart Kessels|27 sept 2018|0.2|Fix incorrect title in TOC|
+||Add sequence diagrams|
 
 ## Table of Contents
 
