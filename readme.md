@@ -21,7 +21,7 @@ This gives you the ability to practice songs that have multiple speeds and/or ti
 	+ [6.2 Flatpak bundle](#62-flatpak-bundle)
 	+ [6.3 Windows installer](#63-windows-installer)
 - [7. Pre-built binaries](#7-pre---built-binaries)
-	+ [7.1 RPM from CORP](#71-rpm-from-copr)
+	+ [7.1 RPM from COPR](#71-rpm-from-copr)
 	+ [7.2 Windows Installer](#72-windows-installer)
 
 ## 1. Screenshots
