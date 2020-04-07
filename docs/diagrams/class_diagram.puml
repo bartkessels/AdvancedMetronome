@@ -1,0 +1,43 @@
+@startuml Class diagram
+
+interface SoundPlayer {
+    + play(): void
+}
+hide SoundPlayer fields
+
+class TimeSignature {
+    + denominator: int
+    + numerator: int
+
+    + getSignature(): int
+}
+
+class CountIn {
+    + bpm: int
+
+    + start(): void
+}
+
+class Measure {
+    + name: string
+    + bpm: int
+    + repetitions: int
+    + isPlaying: bool
+
+    + start(): void
+}
+
+class Metronome {
+    + name: string
+
+    + start(): void
+    + stop(): void
+}
+
+SoundPlayer o-- Measure
+CountIn "0..1" -- Metronome
+Measure "0..*" *-- Metronome
+TimeSignature o-- Measure
+TimeSignature o-- CountIn
+
+@enduml

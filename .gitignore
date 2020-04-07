@@ -1,8 +1,18 @@
-.*.stash
-*.pro.user
+_deps/
+bin/
+build/
+CMakeFiles/
+lib/
+Testing/
+*_autogen/
+.idea/
+.vscode/
 
-Makefile
-
-build
-bin
-.flatpak*
+.DS_Store
+*.cbp
+*.cmake
+*.tcl
+*.user
+MakeFile
+*Cache*
+advancedmetronome
