@@ -22,6 +22,8 @@ addons:
       - cmake
 
 before_script:
+  - if [ "$TRAVIS_OS_NAME" = "osx"    ]; then brew upgrade  ; fi
+  - if [ "$TRAVIS_OS_NAME" = "linux"  ]; then apt upgrade   ; fi
   - mkdir build
   - cd build
   - cmake ..
