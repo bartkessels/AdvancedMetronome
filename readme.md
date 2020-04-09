@@ -37,6 +37,13 @@ All the available documentation for Advanced Metronome can be found in the [docs
 
 ### 5.1 Build for MacOS/Linux
 
+```
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make advancedmetronome
+```
+
 ### 5.2 Build for Windows
 
 ## 6. Packaging

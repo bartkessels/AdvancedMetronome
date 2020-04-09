@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file alias="accent">sounds/accent.wav</file>
+        <file alias="tick">sounds/tick.wav</file>
+    </qresource>
+</RCC>

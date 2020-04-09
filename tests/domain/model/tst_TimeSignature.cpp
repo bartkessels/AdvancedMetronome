@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include "model/TimeSignature.hpp"
+#include "domain/model/TimeSignature.hpp"
 
 using namespace am;
 

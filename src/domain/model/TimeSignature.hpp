@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cmath>
-
 namespace am
 {
     class TimeSignature
@@ -15,8 +13,8 @@ namespace am
         int getSignature();
 
         // Setters
-        void setNumerator(int numerator);
-        void setDenominator(int denominator);
+        void setNumerator(float numerator);
+        void setDenominator(float denominator);
 
     private:
         float denominator;

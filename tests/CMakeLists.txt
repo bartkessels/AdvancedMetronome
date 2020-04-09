@@ -3,12 +3,15 @@ cmake_minimum_required(VERSION 3.15)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set(SOURCE_FILES
-    ../src/model/TimeSignature.cpp
+        ../src/domain/model/Measure.cpp
+        ../src/domain/model/Metronome.cpp
+        ../src/domain/model/TimeSignature.cpp
 )
 
 set(TST_SOURCE_FILES
         main.cpp
-        model/tst_TimeSignature.cpp
+        domain/model/tst_Metronome.cpp
+        domain/model/tst_TimeSignature.cpp
 )
 
 add_executable(am_tests ${SOURCE_FILES} ${TST_SOURCE_FILES})

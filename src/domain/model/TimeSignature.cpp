@@ -1,4 +1,4 @@
-#include "model/TimeSignature.hpp"
+#include "TimeSignature.hpp"
 
 using namespace am;
 
@@ -14,12 +14,12 @@ int TimeSignature::getSignature()
     return (numerator / denominator) * denominator;
 }
 
-void TimeSignature::setDenominator(int denominator)
+void TimeSignature::setDenominator(float denominator)
 {
     this->denominator = denominator;
 }
 
-void TimeSignature::setNumerator(int numerator)
+void TimeSignature::setNumerator(float numerator)
 {
     this->numerator = numerator;
 }
