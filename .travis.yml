@@ -1,0 +1,30 @@
+language: cpp
+
+os:
+  - osx
+  - linux
+  
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    update: true
+    packages:
+      - qt5-default
+      - cmake
+
+  homebrew:
+    update: true
+    packages:
+      - qt5
+      - cmake
+
+before_script:
+  - cd build
+  - cmake ..
+
+script:
+  - make am_tests
+  - ./bin/am_tests
