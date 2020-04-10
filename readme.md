@@ -1,5 +1,7 @@
 # Advanced Metronome
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0edd81b87252410c8e0d8683cd54f7e0)](https://app.codacy.com/manual/bartkessels/AdvancedMetronome?utm_source=github.com&utm_medium=referral&utm_content=bartkessels/AdvancedMetronome&utm_campaign=Badge_Grade_Settings)
+
 Advanced Metronome is a small application in which you can set multiple measures with their own speed, time-signature and number of repeats.
 This gives you the ability to practice songs that have multiple speeds and/or time-signatures.
 
