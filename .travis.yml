@@ -15,11 +15,6 @@ addons:
     packages:
       - qt5
 
-  chocolatey:
-    update: true
-    packages:
-      -
-
 jobs:
   include:
     - stage: build & test
@@ -36,6 +31,8 @@ jobs:
         - cmake ..
         - make am_tests
         - ./bin/am_tests
+      after_success: &after_success_linux_macos
+        - bash <(curl -s https://codecov.io/bash)
 
     - stage: build & test
       os: linux
@@ -43,6 +40,7 @@ jobs:
       install: *install_linux
       before_script: *before_script
       script: *script_linux
+      after_success: *after_success_linux_macos
 
     - stage: build & test
       os: osx
@@ -56,6 +54,7 @@ jobs:
         - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
         - make am_tests
         - ./bin/am_tests
+        after_success: *after_success_linux_macos
 
     - stage: build & test
       os: osx
@@ -63,6 +62,7 @@ jobs:
       install: *install_macos
       before_script: *before_script
       script: *script_macos
+      after_success: *after_success_linux_macos
 
     - stage: build & test
       os: windows
