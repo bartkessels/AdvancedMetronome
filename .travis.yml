@@ -45,7 +45,7 @@ jobs:
       install: &install_macos
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
-        - sudo ln -s ${TRAVIS_BUILD_DIR}/cmake-3.15.7-Linux-x86_64/bin/CMake.app /home/travis/bin/CMake.app
+        - sudo ln -s ${TRAVIS_BUILD_DIR}/cmake-3.15.7-Linux-x86_64/bin/CMake.app /Users/travis/bin/CMake.app
       before_script: *before_script_linux_macos
       script: *script_linux_macos
 
