@@ -19,10 +19,8 @@ jobs:
   include:
     - stage: build & test
       os: linux
-      compiler:
-        - gcc
-        - clang
-      install:
+      compiler: gcc
+      install: &install_linux
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Linux-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Linux-x86_64.tar.gz
         - sudo ln -s ${TRAVIS_BUILD_DIR}/cmake-3.15.7-Linux-x86_64/bin/cmake /home/travis/bin/cmake
@@ -35,13 +33,25 @@ jobs:
         - ./bin/am_tests
 
     - stage: build & test
+      os: linux
+      compiler: clang
+      install: *install_linux
+      before_script: *before_script_linux_macos
+      script: *script_linux_macos
+
+    - stage: build & test
       os: osx
-      compiler:
-        - gcc
-        - clang
-      install:
+      compiler: gcc
+      install: &install_macos
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
         - sudo ln -s ${TRAVIS_BUILD_DIR}/cmake-3.15.7-Linux-x86_64/bin/CMake.app /home/travis/bin/CMake.app
+      before_script: *before_script_linux_macos
+      script: *script_linux_macos
+
+    - stage: build & test
+      os: osx
+      compiler: clang
+      install: *install_macos
       before_script: *before_script_linux_macos
       script: *script_linux_macos
