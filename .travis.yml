@@ -9,11 +9,13 @@ addons:
     packages:
       - qt5-default
       - qtmultimedia5-dev
+      - lcov
 
   homebrew:
     update: true
     packages:
       - qt5
+      - lcov
 
 jobs:
   include:
@@ -28,11 +30,12 @@ jobs:
         - mkdir build
         - cd build
       script: &script_linux
-        - cmake ..
+        - cmake .. -DCODE_COVERAGE=ON
         - make am_tests
         - ./bin/am_tests
       after_success: &after_success_linux_macos
-        - bash <(curl -s https://codecov.io/bash)
+        - lcov --directory . --capture --output-file coverage.info
+        - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
 
     - stage: build & test
       os: linux
@@ -51,7 +54,7 @@ jobs:
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
       before_script: *before_script
       script: &script_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1 -DCODE_COVERAGE=ON
         - make am_tests
         - ./bin/am_tests
       after_success: *after_success_linux_macos
