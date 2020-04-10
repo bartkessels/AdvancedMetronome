@@ -27,7 +27,7 @@ jobs:
       before_script: &before_script_linux_macos
         - mkdir build
         - cd build
-      script: &script_linux_macos
+      script: &script_linux
         - cmake ..
         - make am_tests
         - ./bin/am_tests
@@ -37,7 +37,7 @@ jobs:
       compiler: clang
       install: *install_linux
       before_script: *before_script_linux_macos
-      script: *script_linux_macos
+      script: *script_linux
 
     - stage: build & test
       os: osx
@@ -46,13 +46,15 @@ jobs:
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
-        - brew link qt5 --force
       before_script: *before_script_linux_macos
-      script: *script_linux_macos
+      script: &script_macos
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
+        - make am_tests
+        - ./bin/am_tests
 
     - stage: build & test
       os: osx
       compiler: clang
       install: *install_macos
       before_script: *before_script_linux_macos
-      script: *script_linux_macos
+      script: *script_macos
