@@ -1,5 +1,6 @@
 # Advanced Metronome
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/bartkessels/AdvancedMetronome.svg?branch=development)](https://travis-ci.org/bartkessels/AdvancedMetronome)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1516a222c23548e39d6a587741c597ba)](https://www.codacy.com/manual/bartkessels/AdvancedMetronome?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartkessels/AdvancedMetronome&amp;utm_campaign=Badge_Grade)
 
