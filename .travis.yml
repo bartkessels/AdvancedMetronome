@@ -32,6 +32,7 @@ jobs:
         - cd build
       script: &script_linux_macos
         - cmake ..
+        - make am_tests
         - ./bin/am_tests
 
     - stage: build & test
