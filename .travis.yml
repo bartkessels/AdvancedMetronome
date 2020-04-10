@@ -54,7 +54,7 @@ jobs:
         - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
         - make am_tests
         - ./bin/am_tests
-        after_success: *after_success_linux_macos
+      after_success: *after_success_linux_macos
 
     - stage: build & test
       os: osx
