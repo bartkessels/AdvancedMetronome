@@ -63,13 +63,3 @@ jobs:
       before_script: *before_script
       script: *script_macos
       after_success: *after_success_linux_macos
-
-    - stage: build & test
-      os: windows
-      compiler: clang
-      install: &install_windows
-        - choco install qt-sdk
-      before_script: *before_script
-      script: &script_windows
-        - cmake ..
-        - nmake am_tests
