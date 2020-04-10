@@ -31,9 +31,9 @@ int Measure::getRepetitions()
     return repetitions;
 }
 
-std::unique_ptr<TimeSignature> Measure::getTimeSignature()
+TimeSignature *Measure::getTimeSignature()
 {
-    return std::unique_ptr<TimeSignature>(timeSignature);
+    return timeSignature;
 }
 
 void Measure::setName(std::string name)

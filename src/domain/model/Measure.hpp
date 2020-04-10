@@ -15,7 +15,7 @@ namespace am
         std::string getName();
         int getBpm();
         int getRepetitions();
-        std::unique_ptr<TimeSignature> getTimeSignature();
+        TimeSignature *getTimeSignature();
 
         // Setters
         void setName(std::string name);
