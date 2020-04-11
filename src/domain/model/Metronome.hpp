@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <memory>
 #include <vector>
 
 #include "domain/model/Measure.hpp"
@@ -11,15 +12,15 @@ namespace am
     {
     public:
         Metronome() = default;
-        ~Metronome();
+        ~Metronome() = default;
 
-        void addMeasure(Measure *measure);
-        void removeMeasure(Measure *measure);
-        void swapMeasure(Measure *measureA, Measure *measureB);
+        void addMeasure(std::shared_ptr<Measure> measure);
+        void removeMeasure(std::shared_ptr<Measure> measure);
+        void swapMeasure(std::shared_ptr<Measure> measureA, std::shared_ptr<Measure> measureB);
 
-        std::vector<Measure*> getMeasures();
+        std::vector<std::shared_ptr<Measure>> getMeasures();
 
     private:
-        std::vector<Measure*> measures;
+        std::vector<std::shared_ptr<Measure>> measures;
     };
 }

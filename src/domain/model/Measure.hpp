@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include "TimeSignature.hpp"
 
@@ -8,8 +9,8 @@ namespace am
     class Measure
     {
     public:
-        Measure(std::string name, int bpm, int repetitions, TimeSignature *timeSignature);
-        ~Measure();
+        Measure(std::string name, int bpm, int repetitions, std::unique_ptr<TimeSignature> timeSignature);
+        ~Measure() = default;
 
         // Getters
         std::string getName();
@@ -21,12 +22,11 @@ namespace am
         void setName(std::string name);
         void setBpm(int bpm);
         void setRepetitions(int repetitions);
-        void setTimeSignature(TimeSignature *timeSignature);
 
     private:
         std::string name;
         int bpm{};
         int repetitions{};
-        TimeSignature *timeSignature;
+        std::unique_ptr<TimeSignature> timeSignature;
     };
 }

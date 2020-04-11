@@ -1,19 +1,16 @@
 #include "Measure.hpp"
 
+#include <utility>
+
 using namespace am;
 
-Measure::Measure(std::string name, int bpm, int repetitions, TimeSignature *timeSignature):
+Measure::Measure(std::string name, int bpm, int repetitions, std::unique_ptr<TimeSignature> timeSignature):
     name(std::move(name)),
     bpm(bpm),
     repetitions(repetitions),
-    timeSignature(timeSignature)
+    timeSignature(std::move(timeSignature))
 {
 
-}
-
-Measure::~Measure()
-{
-    delete timeSignature;
 }
 
 std::string Measure::getName()
@@ -33,7 +30,7 @@ int Measure::getRepetitions()
 
 TimeSignature *Measure::getTimeSignature()
 {
-    return timeSignature;
+    return timeSignature.get();
 }
 
 void Measure::setName(std::string name)
@@ -49,9 +46,4 @@ void Measure::setBpm(int bpm)
 void Measure::setRepetitions(int repetitions)
 {
     this->repetitions = repetitions;
-}
-
-void Measure::setTimeSignature(TimeSignature *timeSignature)
-{
-    this->timeSignature = timeSignature;
 }

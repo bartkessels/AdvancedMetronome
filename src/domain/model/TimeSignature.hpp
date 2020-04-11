@@ -5,7 +5,6 @@ namespace am
     class TimeSignature
     {
     public:
-        TimeSignature() = default;
         TimeSignature(float numerator, float denominator);
         ~TimeSignature() = default;
 
