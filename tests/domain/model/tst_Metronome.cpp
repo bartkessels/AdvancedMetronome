@@ -4,8 +4,6 @@
 #include "domain/model/Measure.hpp"
 #include "domain/model/Metronome.hpp"
 
-#include <iostream>
-
 using namespace am;
 
 TEST_CASE("Managing measures", "[Metronome]")
