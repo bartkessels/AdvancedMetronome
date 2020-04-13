@@ -3,6 +3,7 @@
 
 #include "domain/model/Measure.hpp"
 #include "domain/model/Metronome.hpp"
+#include "domain/model/TimeSignature.hpp"
 
 using namespace am;
 
