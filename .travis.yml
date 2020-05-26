@@ -25,6 +25,8 @@ jobs:
 
     - stage: test
       os: linux
+      dist: bionic
+      language: cpp
       compiler: gcc
       install: &install_linux
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Linux-x86_64.tar.gz
@@ -40,6 +42,8 @@ jobs:
 
     - stage: test
       os: linux
+      dist: bionic
+      language: cpp
       compiler: clang
       install: *install_linux
       before_script: *before_script
@@ -47,6 +51,8 @@ jobs:
 
     - stage: test
       os: osx
+      osx_image: xcode11.4
+      language: cpp
       compiler: gcc
       install: &install_macos
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
@@ -54,12 +60,14 @@ jobs:
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
       before_script: *before_script
       script: &script_macos_test
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
         - make am_tests
         - ./bin/am_tests
 
     - stage: test
       os: osx
+      osx_image: xcode11.4
+      language: cpp
       compiler: clang
       install: *install_macos
       before_script: *before_script
@@ -70,6 +78,8 @@ jobs:
     ###############################
     - stage: build
       os: linux
+      dist: bionic
+      language: cpp
       compiler: gcc
       install: *install_linux
       before_script: *before_script
@@ -79,6 +89,8 @@ jobs:
 
     - stage: build
       os: linux
+      dist: bionic
+      language: cpp
       compiler: clang
       install: *install_linux
       before_script: *before_script
@@ -86,15 +98,19 @@ jobs:
 
     - stage: build
       os: osx
+      osx_image: xcode11.4
+      language: cpp
       compiler: gcc
       install: *install_macos
       before_script: *before_script
       script: &script_macos_build
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.14.1
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
         - make advancedmetronome
 
     - stage: build
       os: osx
+      osx_image: xcode11.4
+      language: cpp
       compiler: clang
       install: *install_macos
       before_script: *before_script
